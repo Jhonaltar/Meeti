@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Title -->
+  <title>Meeti - <%- nombrePagina %>
+  </title>
+
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+
+  <!-- Font -->
+  <!-- <link href="@@vars.googleFont" rel="stylesheet" /> -->
+
+  <!-- CSS Implementing Plugins -->
+  <!-- bundlecss:vendor [] -->
+  <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css" />
+  <link rel="stylesheet" href="/assets/vendor/slick-carousel/slick/slick.css" />
+  <link rel="stylesheet" href="/assets/vendor/dzsparallaxer/dzsparallaxer.css" />
+  <link rel="stylesheet" href="/assets/vendor/hs-video-bg/dist/hs-video-bg.min.css" />
+  <link rel="stylesheet" href="/assets/vendor/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="/assets/vendor/quill/dist/quill.snow.css">
+  <link rel="stylesheet" href="/assets/vendor/leaflet/dist/leaflet.css">
+  <link rel="stylesheet" href="/assets/vendor/cubeportfolio/css/cubeportfolio.min.css">
+
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+ <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+    integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+    crossorigin="">
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/toast.min.css">
+  <link rel="stylesheet" href="/assets/css/trix.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/formvalidation/0.6.2-dev/css/formValidation.min.css"> -->
+
+  <!-- CSS Front Template -->
+  <!-- bundlecss:theme [] @@vars.version -->
+  <link rel="stylesheet" href="/assets/css/theme.css" />
+  <link rel="stylesheet" href="/assets/css/theme.min.css" />
+
+  
+
+</head>
+
+<body>
+  <br>
+  <header id="header" class="header header-sticky-top-lg">
+    <div class="header-section">
+      <div id="logoAndNav" class="container">
+        <!-- Nav -->
+        <nav class="js-mega-menu navbar navbar-expand-lg">
+          <!-- Logo -->
+          <a class="navbar-brand" href="/" aria-label="Front">
+            <img src="../../assets/svg/logos/logo.svg" alt="Logo" />
+          </a>
+          <!-- End Logo -->
+
+          <!-- Responsive Toggle Button -->
+          <button type="button" class="navbar-toggler btn btn-icon btn-sm rounded-circle" aria-label="Toggle navigation"
+            aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+            <span class="navbar-toggler-default">
+              <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor"
+                  d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z" />
+              </svg>
+            </span>
+            <span class="navbar-toggler-toggled">
+              <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor"
+                  d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z" />
+              </svg>
+            </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
+
+          <% if(locals.usuario.id) {%> 
+            <%- include ('partials/nav-autenticado.ejs')  %> 
+          <% } else { %>
+            <%- include ('partials/nav-no-autenticado.ejs')  %>
+          <% } %>
+        </nav>
+        <!-- End Nav -->
+      </div>
+    </div>
+  </header>
+
+  <%- body %>
+  <br>
+  <br>
+  
+<footer class="bg-dark">
+  <div class="container text-center space-1" >
+   <!-- Logo -->
+  <a class="d-inline-flex align-items-center mb-3" href="#" aria-label="Front">
+    <img class="brand" src="../assets/svg/logos/logo-white.svg" alt="Logo">
+  </a>
+  <!-- End Logo -->
+
+  <p class="font-size-1 mb-1 text-white">We're part of the <a href="#">Pixeel Ltd.</a> family along with <a href="http://htmlstream.com">Htmlstream</a>.</p>
+  <p class="font-size-1 text-white">© Front. 2020 Htmlstream. All rights reserved.</p>
+
+  <!-- Social Networks -->
+  <ul class="list-inline mb-0">
+    <li class="list-inline-item mb-2 mb-sm-0">
+      <a class="btn btn-icon btn-sm btn-ghost-light rounded-circle" href="#">
+        <i class="fab fa-dribbble"></i>
+      </a>
+    </li>
+    <li class="list-inline-item mb-2 mb-sm-0">
+      <a class="btn btn-icon btn-sm btn-ghost-light rounded-circle" href="#">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li class="list-inline-item mb-2 mb-sm-0">
+      <a class="btn btn-icon btn-sm btn-ghost-light rounded-circle" href="#">
+        <i class="fab fa-medium-m"></i>
+      </a>
+    </li>
+    <li class="list-inline-item mb-2 mb-sm-0">
+      <a class="btn btn-icon btn-sm btn-ghost-light rounded-circle" href="#">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+    <li class="list-inline-item mb-2 mb-sm-0">
+      <a class="btn btn-icon btn-sm btn-ghost-light rounded-circle" href="#">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li class="list-inline-item mb-2 mb-sm-0">
+      <a class="btn btn-icon btn-sm btn-ghost-light rounded-circle" href="#">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </li>
+  </ul>
+  <!-- End Social Networks -->
+  </div>
+</footer>
+
+    <!-- <div id="jsPreloader" class="page-preloader">
+        <div class="page-preloader-content-centered">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div> -->
+
+    <!-- JS Global Compulsory @@deleteLine:build -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script> -->
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+    <!-- JS Implementing Plugins -->
+    <!-- JS Implementing Plugins -->
+    <script src="/assets/vendor/hs-header/dist/hs-header.min.js"></script>
+    <script src="/assets/vendor/hs-go-to/dist/hs-go-to.min.js"></script>
+    <script src="/assets/vendor/hs-unfold/dist/hs-unfold.min.js"></script>
+    <script src="/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js"></script>
+    <script src="/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js"></script>
+    <script src="/assets/vendor/hs-sticky-block/dist/hs-sticky-block.min.js"></script>
+    <script src="/assets/vendor/hs-counter/dist/hs-counter.min.js"></script>
+    <script src="/assets/vendor/appear/dist/appear.min.js"></script>
+    <script src="/assets/vendor/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+    <script src="/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
+    <script src="/assets/vendor/typed.js/lib/typed.min.js"></script>
+    <script src="/assets/vendor/aos/dist/aos.js"></script>
+    <script src="/assets/vendor/select2/dist/js/select2.full.min.js"></script>
+    <script src="/assets/vendor/quill/dist/quill.min.js"></script>
+    <script src="/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="/assets/vendor/hs-file-attach/dist/hs-file-attach.min.js"></script>
+    <script src="/assets/vendor/slick-carousel/slick/slick.js"></script>
+
+    <!-- JS Implementing Plugins -->
+<script src="/assets/vendor/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+
+<!-- JS Front -->
+    <!-- bundlejs:theme [] -->
+    <script src="/assets/js/hs.core.js"></script>
+    <script src="/assets/js/hs.validation.js"></script>
+    <script src="/assets/js/hs.cubeportfolio.js"></script>
+    <script src="/assets/js/hs.typed.js"></script>
+    <script src="/assets/js/toast.min.js"></script>
+    <script src="/assets/js/hs.select2.js"></script>
+    <script src="/assets/js/theme-custom.js"></script>
+    <script src="/assets/js/theme.min.js"></script>
+    <script src="/assets/js/trix.js"></script>
+    <script src="/assets/js/hs.leaflet.js"></script>
+    <script src="/assets/js/hs.slick-carousel.js"></script>
+    
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+     <!-- Load Esri Leaflet from CDN -->
+     <script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js"
+     integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ=="
+     crossorigin=""></script>
+     <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+     integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+     crossorigin=""></script>
+    
+     <% if(usuario.id) {%>
+     <script src="/dist/bundle.js"></script>
+     <% } %>
+     <script src="/js/meeti.js"></script>  
+  
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script> -->
+    <!-- <script type="text/javascript">
+      $(document).on("ready", function () {
+        // INITIALIZATION OF HEADER
+        // =======================================================
+        var header = new HSHeader($("#header")).init();
+
+        // INITIALIZATION OF MEGA MENU
+        // =======================================================
+        var megaMenu = new HSMegaMenu($(".js-mega-menu"), {
+          desktop: {
+            position: "left",
+          },
+        }).init();
+
+        // INITIALIZATION OF UNFOLD
+        // =======================================================
+        var unfold = new HSUnfold(".js-hs-unfold-invoker").init();
+
+        // INITIALIZATION OF TEXT ANIMATION (TYPING)
+        // =======================================================
+        var typed = $.HSCore.components.HSTyped.init(".js-text-animation");
+
+        // INITIALIZATION OF AOS
+        // =======================================================
+        AOS.init({
+          duration: 650,
+          once: true,
+        });
+
+        // INITIALIZATION OF FORM VALIDATION
+        // =======================================================
+        $(".js-validate").each(function () {
+          $.HSCore.components.HSValidation.init($(this), {
+            rules: {
+              confirmPassword: {
+                equalTo: "#signupPassword",
+              },
+            },
+          });
+        });
+
+        // INITIALIZATION OF SHOW ANIMATIONS
+        // =======================================================
+        $(".js-animation-link").each(function () {
+          var showAnimation = new HSShowAnimation($(this)).init();
+        });
+
+        // INITIALIZATION OF COUNTER
+        // =======================================================
+        $(".js-counter").each(function () {
+          var counter = new HSCounter($(this)).init();
+        });
+
+        // INITIALIZATION OF STICKY BLOCK
+        // =======================================================
+        var cbpStickyFilter = new HSStickyBlock($("#cbpStickyFilter"));
+
+        // INITIALIZATION OF CUBEPORTFOLIO
+        // =======================================================
+        $(".cbp").each(function () {
+          var cbp = $.HSCore.components.HSCubeportfolio.init($(this), {
+            layoutMode: "grid",
+            filters: "#filterControls",
+            displayTypeSpeed: 0,
+          });
+        });
+
+        $(".cbp").on("initComplete.cbp", function () {
+          // update sticky block
+          cbpStickyFilter.update();
+        });
+
+        $(".cbp").on("filterComplete.cbp", function () {
+          // update sticky block
+          cbpStickyFilter.update();
+        });
+
+        $(".cbp").on("pluginResize.cbp", function () {
+          // update sticky block
+          cbpStickyFilter.update();
+        });
+
+        // animated scroll to cbp container
+        $("#cbpStickyFilter").on("click", ".cbp-filter-item", function (e) {
+          $("html, body")
+            .stop()
+            .animate(
+              {
+                scrollTop: $("#demoExamplesSection").offset().top,
+              },
+              200
+            );
+        });
+
+        // INITIALIZATION OF GO TO
+        // =======================================================
+        $(".js-go-to").each(function () {
+          var goTo = new HSGoTo($(this)).init();
+        });
+      });
+    </script> -->
+
+    <script>
+      $(window).on('load', function () {
+        
+        // PAGE PRELOADER
+        // =======================================================
+        setTimeout(function () {
+          $('#jsPreloader').fadeOut(500)
+        }, 1000)
+      });
+      $(document).on("ready", function () {
+        // INITIALIZATION OF HEADER
+        // =======================================================
+        var header = new HSHeader($("#header")).init();
+
+        // INITIALIZATION OF MEGA MENU
+        // =======================================================
+        var megaMenu = new HSMegaMenu($(".js-mega-menu"), {
+          desktop: {
+            position: "left",
+          },
+        }).init();
+
+        // INITIALIZATION OF SLICK CAROUSEL
+      // =======================================================
+      $('#heroSliderNav').on('init', function (event, slick) {
+        $(slick.$slider).find('.slick-pagination-line-progress .slick-pagination-line-progress-helper').each(function() {
+          $(this).css({
+            transitionDuration: (slick.options.autoplaySpeed - slick.options.speed) + 'ms'
+          });
+        });
+
+        setTimeout(function() {
+          $(slick.$slider).addClass('slick-dots-ready');
+        });
+      });
+
+      $('#heroSliderNav').one('beforeChange', function (event, slick) {
+        $(slick.$slider).find('.slick-pagination-line-progress .slick-pagination-line-progress-helper').each(function() {
+          $(this).css({
+            transitionDuration: (slick.options.autoplaySpeed + slick.options.speed) + 'ms'
+          });
+        });
+      });
+
+        // INITIALIZATION OF FORM VALIDATION
+        // =======================================================
+        $('.js-validate').each(function () {
+          $.HSCore.components.HSValidation.init($(this), {
+            rules: {
+              confirmPassword: {
+                equalTo: '#signupPassword'
+              }
+            }
+          });
+        });
+
+        // INITIALIZATION OF GO TO
+        // =======================================================
+        $(".js-go-to").each(function () {
+          var goTo = new HSGoTo($(this)).init();
+        });
+
+        // INITIALIZATION OF SELECT PICKER
+        // =======================================================
+        $('.js-custom-select').each(function () {
+          var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+        // INITIALIZATION OF QUILLJS EDITOR
+        // =======================================================
+        var quill = $.HSCore.components.HSQuill.init('.js-quill');
+
+        $('.dz-dropzone').each(function () {
+          // INITIALIZATION OF DROPZONE FILE ATTACH MODULE
+          // =======================================================
+          var dropzone = $.HSCore.components.HSDropzone.init('#' + $(this).attr('id'));
+        });
+
+        // INITIALIZATION OF CUSTOM FILE
+        // =======================================================
+        $('.js-file-attach').each(function () {
+          var customFile = new HSFileAttach($(this)).init();
+        });
+
+       // INITIALIZATION OF SLICK CAROUSEL
+        // =======================================================
+        $('.js-slick-carousel').each(function() {
+          var slickCarousel = $.HSCore.components.HSSlickCarousel.init($(this));
+        });
+
+      $(window).on('resize', function() {
+        $('#heroSliderNav').slick('setPosition');
+      });
+
+       // INITIALIZATION OF SHOW ANIMATIONS
+        // =======================================================
+        $(".js-animation-link").each(function () {
+          var showAnimation = new HSShowAnimation($(this)).init();
+        });
+
+        // INITIALIZATION OF UNFOLD
+        // =======================================================
+        var unfold = new HSUnfold('.js-hs-unfold-invoker').init();
+
+
+         // INITIALIZATION OF STICKY BLOCK
+    // =======================================================
+    var cbpStickyFilter = new HSStickyBlock($('#cbpStickyFilter'));
+
+
+// INITIALIZATION OF CUBEPORTFOLIO
+// =======================================================
+$('.cbp').each(function () {
+  var cbp = $.HSCore.components.HSCubeportfolio.init($(this), {
+    layoutMode: 'grid',
+    filters: '#filterControls',
+    displayTypeSpeed: 0
+  });
+});
+
+$('.cbp').on('initComplete.cbp', function() {
+  // update sticky block
+  cbpStickyFilter.update();
+
+
+  // INITIALIZATION OF AOS
+  // =======================================================
+  AOS.init({
+    duration: 650,
+    once: true
+  });
+});
+
+$('.cbp').on('filterComplete.cbp', function() {
+  // update sticky block
+  cbpStickyFilter.update();
+
+
+  // INITIALIZATION OF AOS
+  // =======================================================
+  AOS.init({
+    duration: 650,
+    once: true
+  });
+});
+
+$('.cbp').on('pluginResize.cbp', function() {
+  // update sticky block
+  cbpStickyFilter.update();
+});
+
+// animated scroll to cbp container
+$('#cbpStickyFilter').on('click', '.cbp-filter-item', function (e) {
+  $('html, body').stop().animate({
+    scrollTop: $('#demoExamplesSection').offset().top
+  }, 1);
+});
+
+      });
+    </script>
+
+
+</script>
+</body>
+
+</html>

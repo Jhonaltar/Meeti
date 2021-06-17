@@ -1,0 +1,132 @@
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" role="main">
+    <!-- Demo Examples Section -->
+    <div class="bg-light overflow-hidden">
+        <div class="container-fluid space-2 space-lg-3 px-lg-5">
+          <!-- Title -->
+          <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+            <h2>Categoria de <%= categoria.nombre %> </h2>
+          </div>
+          <!-- End Title -->
+  
+          <div class="row">
+            <div id="stickyBlockStartPoint" class="col-lg-3 pr-xl-5 mb-5 mb-lg-0">
+              <!-- Filter -->
+              <div id="cbpStickyFilter" class="js-sticky-block card p-4"
+                   data-hs-sticky-block-options='{
+                     "parentSelector": "#stickyBlockStartPoint",
+                     "targetSelector": "#logoAndNav",
+                     "breakpoint": "lg",
+                     "startPoint": "#stickyBlockStartPoint",
+                     "endPoint": "#stickyBlockEndPoint",
+                     "stickyOffsetTop": 16
+                   }'>
+                <div id="filterControls" class="nav nav-sm nav-x-0 flex-lg-column">
+                  <div class="cbp-filter-scrollbar">
+                    <a class="cbp-filter-item cbp-filter d-flex justify-content-between align-items-center-item-active nav-link mx-2 mx-lg-0" href="javascript:;" data-filter=".landings">
+                      Proximos meeti's
+                      <span class="badge border badge-pill ml-2" style="background-color: cornflowerblue;"><%= meetis.length %></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Filter -->
+            </div>
+  
+            <div class="col-lg-9 pl-xl-0">
+              <div class="cbp mt-n3 mx-n3"
+                   data-hs-cbp-options='{
+                     "defaultFilter": ".landings",
+                     "animationType": "fadeOut",
+                     "caption": "zoom",
+                     "gapHorizontal": 0,
+                     "gapVertical": 0,
+                     "mediaQueries": [
+                       {"width": 1500, "cols": 3},
+                       {"width": 1100, "cols": 3},
+                       {"width": 800, "cols": 3},
+                       {"width": 480, "cols": 2},
+                       {"width": 380, "cols": 1}
+                     ]
+                   }'>
+                <!-- Item -->
+                <% if (meetis.length > 0) {%> 
+                    <% meetis.forEach(meeti => { %> 
+                      <div class="cbp-item landings">
+                        <a class="cbp-caption" href="/meeti/<%= meeti.slug %>">
+                            <div class="rounded-lg overflow-hidden p-1 m-3">
+                                <div class="cbp-caption-defaultWrap">
+                                  <% if (meeti.grupo.imagen) {%>
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" data-cbp-src="/uploads/grupos/<%= meeti.grupo.imagen%> " width="373" height="298" alt="Image Description">
+                                  <%} else {%>
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" data-cbp-src="/assets/svg/components/graphics-4.svg" width="373" height="298" alt="Image Description">
+                                  <%} %>
+                                        <div class="position-absolute top-0 left-0 p-4">
+                                            <span class="badge badge-light"><li class="list-inline-item d-inline-flex align-items-center">
+                                                <span class="legend-indicator bg-success"></span>En Curso
+                                              </li></span>
+                                        </div>
+                                        <div class="position-absolute right-0 bottom-0 left-0 p-4 text-center">
+                                          <h3 class="text-white mb-0"><span class="badge badge-pill badge-light"><%= meeti.titulo %></span></h3>
+                                      </div>
+                                </div>
+                                <div class="card p-2 mb-3">
+                                  <blockquote class="blockquote mb-0">
+                                    <div class="media align-items-center">
+                                      <% if(meeti.usuario.imagen) { %>
+                                        <span class="avatar avatar-sm avatar-circle">
+                                          <img class="avatar avatar-sm avatar-circle" src="/uploads/perfiles/<%= meeti.usuario.imagen %>" alt="Image Description">
+                                        </span> 
+                                      <% } else { %>
+                                        <span class="avatar avatar-sm avatar-circle">
+                                          <img class="avatar avatar-sm avatar-circle" src="/assets/img/100x100/img12.jpg" alt="Image Description"> 
+                                        </span>
+                                      <% }  %>      
+                                    <div class="media-body">
+                                      <h5 class="mb-0">
+                                          <p class="text-body mb-1">Organizado por:</p>
+                                        <a class="text-dark"><%= meeti.usuario.nombre %></a>
+                                      </h5>
+                                    </div>
+                                  </div>
+                                    <footer class="blockquote-footer text-center">
+                                      <small>
+                                        <% moment.locale('es') %>
+                            <% const fecha=meeti.fecha
+                                +' '+ meeti.hora %> 
+                                            <li class="list-inline-item ">
+                                                <i class="fas fa-calendar-alt"></i><%=moment(fecha).format(' LL') %>
+                                </li>
+                                <li class="list-inline-item ">
+                                    <i class="fas fa-clock mr-1"></i>
+                                    <%=moment(fecha).format('h:mm a') %>
+                                </li>
+                                      </small>
+                                    </footer>
+                                  </blockquote>
+                                </div>
+                            </div>
+                        </a>
+                      </div>
+                    <%}); %> 
+                <%} else { %>                 
+                  <div class="cbp-item landings">
+                    <div class="alert alert-primary" role="alert" style="text-align: center;top: 17px;">
+                        <h4 class="alert-heading">Aviso!</h4>
+                        <p class="text-inherit">No hay Meeti's Proximos por el momento.</p>
+                        <hr />
+                    </div>
+                  </div>
+                <% } %> 
+                <!-- End Item -->
+              </div>
+            </div>
+          </div>
+  
+          <!-- Sticky Block End Point -->
+          <div id="stickyBlockEndPoint"></div>
+        </div>
+      </div>
+      <!-- End Demo Examples Section -->
+</main>
+<!-- ========== END MAIN CONTENT ========== -->

@@ -1,0 +1,240 @@
+<main id="content" role="main">
+
+    <div class="overflow-hidden">
+        <div class="container space-top-1 space-top-md-2 space-bottom-3">
+            <% if (grupo.imagen) { %>
+                <div class="row justify-content-lg-between align-items-md-center">
+                    <div class="col-md-6 col-lg-5 mb-7 mb-md-0">
+                        <div class="mb-5">
+                            <h1 class="display-4 mb-3">
+                                <%= grupo.nombre %>
+                            </h1>
+                            <p class="lead">
+                                <%- grupo.descripcion %>
+                            </p>
+                        </div>
+                        <a class="js-go-to position-static btn btn-primary btn-wide transition-3d-hover" target="_blank"
+                            href="<%- grupo.url %> " data-hs-go-to-options="{
+                  &quot;targetSelector&quot;: &quot;#caseStudies&quot;,
+                  &quot;offsetTop&quot;: 0,
+                  &quot;position&quot;: null,
+                  &quot;animationIn&quot;: false,
+                  &quot;animationOut&quot;: false
+                 }">
+                            Ir la Sitio Web
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="position-relative">
+                            <img class="img-fluid rounded-lg" src="/uploads/grupos/<%= grupo.imagen %>"
+                                alt="Image Description">
+                            <div
+                                class="position-absolute top-0 right-0 w-100 h-100 bg-soft-primary rounded-lg z-index-n1 mt-5 mr-n5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%} else { %>
+                    <div class="row justify-content-lg-between align-items-md-center">
+                        <div class="col-md-6 col-lg-5 mb-7 mb-md-0">
+                            <div class="mb-5">
+                                <h1 class="display-4 mb-3">
+                                    <%= grupo.nombre %>
+                                </h1>
+                                <p class="lead">
+                                    <%- grupo.descripcion %>
+                                </p>
+                            </div>
+                            <a class="js-go-to position-static btn btn-primary btn-wide transition-3d-hover"
+                                href="<%- grupo.url %>" data-hs-go-to-options="{
+                      &quot;targetSelector&quot;: &quot;#caseStudies&quot;,
+                      &quot;offsetTop&quot;: 0,
+                      &quot;position&quot;: null,
+                      &quot;animationIn&quot;: false,
+                      &quot;animationOut&quot;: false
+                     }">
+                                Ir la Sitio Web
+                            </a>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative">
+                                <img class="img-fluid rounded-lg" src="/assets/svg/components/abstract-shapes-16.svg"
+                                    alt="Image Description">
+                                <div
+                                    class="position-absolute top-0 right-0 w-100 h-100 bg-soft-primary rounded-lg z-index-n1 mt-5 mr-n5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+        </div>
+    </div>
+
+    <!-- Demo Examples Section -->
+    <div class="bg-light overflow-hidden">
+        <div class="container-fluid space-2 px-lg-5">
+            <!-- Title -->
+            <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+                <h2>Meetis</h2>
+            </div>
+            <!-- End Title -->
+
+            <div class="row">
+                <div id="stickyBlockStartPoint" class="col-lg-3 pr-xl-5 mb-5 mb-lg-0">
+                    <!-- Filter -->
+                    <div id="cbpStickyFilter" class="js-sticky-block card p-4" data-hs-sticky-block-options='{
+                 "parentSelector": "#stickyBlockStartPoint",
+                 "targetSelector": "#logoAndNav",
+                 "breakpoint": "lg",
+                 "startPoint": "#stickyBlockStartPoint",
+                 "endPoint": "#stickyBlockEndPoint",
+                 "stickyOffsetTop": 16
+               }'>
+                        <div id="filterControls" class="nav nav-sm nav-x-0 flex-lg-column">
+                            <div class="cbp-filter-scrollbar">
+                                <a class="cbp-filter-item cbp-filter d-flex justify-content-between align-items-center-item-active nav-link mx-2 mx-lg-0"
+                                    href="javascript:;" data-filter=".landings">
+                                    Proximos meeti's
+                                    <span class="badge border badge-pill ml-2" style="background-color: cornflowerblue;"><%= meetis.length %></span>
+                                </a>
+                                <a class="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0"
+                                    href="javascript:;" data-filter=".onepages">
+                                    Meeti's Anteriores
+                                    <span class="badge border badge-pill ml-2"style="background-color: cornflowerblue;"><%= anteriores.length %></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Filter -->
+                </div>
+
+                <div class="col-lg-9 pl-xl-0">
+                    <div class="cbp mt-n3 mx-n3" data-hs-cbp-options='{
+                 "defaultFilter": ".landings",
+                 "animationType": "fadeOut",
+                 "caption": "zoom",
+                 "gapHorizontal": 0,
+                 "gapVertical": 0,
+                 "mediaQueries": [
+                   {"width": 1500, "cols": 3},
+                   {"width": 1100, "cols": 3},
+                   {"width": 800, "cols": 3},
+                   {"width": 480, "cols": 2},
+                   {"width": 380, "cols": 1}
+                 ]
+               }'>
+
+                        <% if (meetis.length> 0) { %>
+                                <% meetis.forEach(meeti=> { %>
+                                    <!-- Item -->
+                                    <div class="cbp-item landings">
+                                        <a class="cbp-caption" href="/meeti/<%= meeti.slug %>">
+                                            <div class="bg-white shadow-sm rounded-lg overflow-hidden p-1 m-3">
+                                                <div class="cbp-caption-defaultWrap">
+                                                    <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                                        data-cbp-src="/assets/svg/components/graphics-4.svg" width="373"
+                                                        height="298" alt="Image Description">
+                                                        <div class="position-absolute top-0 left-0 p-4">
+                                                            <span class="badge badge-light"><li class="list-inline-item d-inline-flex align-items-center">
+                                                                <span class="legend-indicator bg-success"></span>En Curso
+                                                              </li></span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center p-3">
+                                                <span class="d-block h4 mb-0">
+                                                    <%= meeti.titulo %><span class="small text-body"></span>
+                                                </span>
+                                                <% moment.locale('es') %>
+                                                    <% const fecha=meeti.fecha
+                                                        +' '+ meeti.hora %> 
+                                                                    <li class="list-inline-item">
+                                                                        <i class="fas fa-calendar-alt"></i><%=moment(fecha).format(' LL') %>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fas fa-clock mr-1"></i>
+                                                            <%=moment(fecha).format('h:mm a') %>
+                                                        </li>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <!-- End Item -->
+                                <% }) %>
+
+                                <% } else { %>
+                                    <div class="cbp-item onepages">
+                                        <div class="alert alert-primary" role="alert" style="text-align: center;">
+                                            <h4 class="alert-heading">Aviso!</h4>
+                                            <p class="text-inherit">No hay Meeti's Proximos por el momento.</p>
+                                            <hr />
+                                        </div>
+                                    </div>   
+                        <% } %>
+                        
+                        <% if (anteriores.length> 0) { %>
+                            <% anteriores.forEach(anteriore=> { %>
+                                <!-- Item -->
+                                <div class="cbp-item onepages">
+                                            <a class="cbp-caption">
+                                                <div class="bg-white shadow-sm rounded-lg overflow-hidden p-1 m-3">
+                                                    <div class="cbp-caption-defaultWrap">
+                                                        <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                                            data-cbp-src="/assets/svg/components/graphics-2.svg"
+                                                            width="373" height="298" alt="Image Description">
+                                                            <div class="position-absolute top-0 left-0 p-4">
+                                                                <span class="badge badge-light"><li class="list-inline-item d-inline-flex align-items-center">
+                                                                    <span class="legend-indicator bg-danger"></span>Expiro
+                                                                  </li></span>
+                                                            </div>
+                                                            
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="text-center p-3">
+                                                    <span class="d-block h4 mb-0">
+                                                        <%= anteriore.titulo %><span class="small text-body"></span>
+                                                    </span>
+                                                    <% moment.locale('es') %>
+                                                        <% const fecha=anteriore.fecha
+                                                            +' '+ anteriore.hora %> 
+                                                            <li class="list-inline-item">
+                                                                <i class="fas fa-calendar-alt"></i><%=moment(fecha).format(' LL') %>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <i class="fas fa-clock mr-1"></i>
+                                                                <%=moment(fecha).format('h:mm a') %>
+                                                            </li>
+
+                                                </div>
+                                            </a>
+                                </div>
+                                <!-- End Item -->
+
+                            <% }) %>
+                        <% } else { %>
+                            <div class="cbp-item onepages">
+                                <div class="alert alert-success" role="alert" style="text-align: center;">
+                                    <h4 class="alert-heading">Aviso!</h4>
+                                    <p class="text-inherit">No hay Meeti's Anteriores por lo que
+                                        aun no han pasado de su fecha de evento, por lo tanto,
+                                        si ya paso su fecha de evento lo encontraras en esta
+                                        seccion</p>
+                                    <hr />
+                                </div>
+                            </div>   
+                        <% } %>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sticky Block End Point -->
+            <div id="stickyBlockEndPoint"></div>
+        </div>
+    </div>
+    <!-- End Demo Examples Section -->
+</main>

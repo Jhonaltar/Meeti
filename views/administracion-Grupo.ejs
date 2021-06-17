@@ -1,0 +1,659 @@
+<!-- ========== MAIN ========== -->
+<main id="content" role="main" class="bg-light" style="top: 50px;">
+  <!-- Breadcrumb Section -->
+  <div class="bg-dark" style="background-image: url(./assets/svg/components/abstract-shapes-20.svg);">
+    <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="d-none d-lg-block">
+            <h1 class="h2 text-white">
+              <%= nombrePagina%>
+            </h1>
+          </div>
+
+          <!-- Breadcrumb -->
+          <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
+            <li class="breadcrumb-item active" aria-current="page">
+              <%= tagline%>
+            </li>
+          </ol>
+          <!-- End Breadcrumb -->
+        </div>
+
+        <div class="col-auto">
+          <div class="d-none d-lg-block">
+            <a class="btn btn-sm btn-soft-light" href="#">Cerrar Sesión</a>
+          </div>
+
+          <!-- Responsive Toggle Button -->
+          <button type="button" class="navbar-toggler btn btn-icon btn-sm rounde-circle d-lg-none"
+            aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebarNav" data-toggle="collapse"
+            data-target="#sidebarNav">
+            <span class="navbar-toggler-default">
+              <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor"
+                  d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z" />
+              </svg>
+            </span>
+            <span class="navbar-toggler-toggled">
+              <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor"
+                  d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z" />
+              </svg>
+            </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Breadcrumb Section -->
+
+  <!-- Content Section -->
+  <div class="container space-1 space-top-lg-0 space-bottom-lg-2 mt-lg-n10">
+    <div class="row">
+      <div class="col-lg-3">
+        <!-- Navbar -->
+        <div class="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+          <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+            <!-- Card -->
+            <div class="card mb-5">
+              <div class="card-body">
+                <!-- Avatar -->
+                <div class="d-none d-lg-block text-center mb-5">
+                  <div class="avatar avatar-xxl avatar-circle mb-3">
+                    <% if (usuario.imagen){ %> 
+                      <img id="avatarImg" class="avatar-img" src="/uploads/perfiles/<%=usuario.imagen%>"
+                      alt="Image Description">
+                      <img class="avatar-status avatar-lg-status" src="../assets/svg/illustrations/top-vendor.svg"
+                      alt="Image Description" data-toggle="tooltip" data-placement="top" title="Esta Verificada la cuenta">
+                    <% } else {%> 
+                      <img id="avatarImg" class="avatar-img" src="../assets/img/160x160/img39.jpg"
+                      alt="Image Description">
+                      <img class="avatar-status avatar-lg-status" src="../assets/svg/illustrations/top-vendor.svg"
+                      alt="Image Description" data-toggle="tooltip" data-placement="top" title="Esta Verificada la cuenta">
+                    <% } %>
+                  </div>
+
+                  <h4 class="card-title"><%=usuario.nombre%></h4>
+                  <p class="card-text font-size-1"><%=usuario.email%></p>
+                </div>
+                <!-- End Avatar -->
+
+                <!-- Nav -->
+                <h6 class="text-cap small">Mi Cuenta</h6>
+
+                <!-- List -->
+                <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
+                  <li class="nav-item">
+                    <a class="nav-link " href="/administracion">
+                      <i class="fas fa-id-card nav-icon"></i> Editar Perfil
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/administracion-Meeti">
+                      <i class="fas fa-shield-alt nav-icon"></i> Mis Meeti
+                      <span class="badge badge-soft-dark badge-pill nav-link-badge"><%= listameeti.length %></span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/administracion-Grupo">
+                      <i class="fas fa-bell nav-icon"></i> Mis Grupos
+                      <span class="badge badge-soft-dark badge-pill nav-link-badge"><%= listagrupo.length %></span>
+                    </a>
+                  </li>
+                </ul>
+                <!-- End List -->
+                <div class="d-lg-none">
+                  <div class="dropdown-divider"></div>
+                </div>
+                <!-- End Nav -->
+              </div>
+            </div>
+            <!-- End Card -->
+          </div>
+        </div>
+        <!-- End Navbar -->
+      </div>
+
+      <div class="col-lg-9">
+        <!-- Card -->
+        <div class="card">
+          <!-- Header -->
+          <div class="card-header">
+            <h5 class="card-title">Mis Grupos</h5>
+          </div>
+          <!-- End Header -->
+          <% if(locals.mensajes) { %>
+            <% const categoria=Object.keys(locals.mensajes) %>
+              <% if (categoria.length) { %>
+                <% locals.mensajes[categoria].forEach(alerta=>{ %>
+                  <div class="alert alert-soft-<%- categoria %> text-center rounded-0 mb-0" role="alert">
+                    <strong>
+                      <%= alerta %>
+                    </strong>
+                  </div>
+                  <% }) %>
+                    <% } %>
+                      <% } %>
+
+                        <!-- Body -->
+                        <div class="card-body">
+                          <!-- Nav -->
+                          <ul class="nav nav-segment nav-fill mb-5" id="editUserTab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="all-orders-tab" data-toggle="tab" href="#all-orders"
+                                role="tab">Listado
+                                de Grupos</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="open-orders-tab" data-toggle="tab" href="#open-orders"
+                                role="tab">Publicar nuevo
+                                Grupo</a>
+                            </li>
+                          </ul>
+                          <!-- End Nav -->
+
+                          <!-- Tab Content -->
+                          <div class="tab-content" id="editUserTabContent">
+                            <!-- /////////////////////////// LISTADO DE NUEVOS GRUPO//////////////////////////////////////// -->
+                            <div class="tab-pane fade show active" id="all-orders" role="tabpanel"
+                              aria-labelledby="all-orders-tab">
+                              <% if (listagrupo.length) { %>
+                                <!-- Select Group -->
+                                <div class="d-sm-flex align-items-sm-center mb-5">
+                                  <div class="mb-2 mb-sm-0 mr-3">
+                                    <span><strong class="text-dark">Total Publicados: <span
+                                          class="badge badge-pill badge-success">
+                                          <%= listagrupo.length %>
+                                        </span></strong></span>
+                                  </div>
+
+
+                                </div>
+                                <!-- End Select Group -->
+
+                                <ul class="list-unstyled">
+                                  <!-- Card -->
+                                  <!--  <li class="card card-bordered shadow-none mb-3">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-6 col-md">
+                            <small class="text-cap">Fch. de publicacion</small>
+                            <small class="text-dark font-weight-bold">30 April, 2020</small>
+                          </div>
+                          <div class="col-6 col-md mb-3 mb-md-0">
+                            <small class="text-cap">Asistentes</small>
+                            <small class="text-dark font-weight-bold"><span class="badge badge-pill badge-warning">Total:
+                                3</span></small>
+                          </div>
+                          <div class="col-6 col-md mb-3 mb-md-0">
+                            <small class="text-cap">Ship to</small>
+                            <small class="text-dark font-weight-bold">Natalie Curtis</small>
+                          </div>
+                          <div class="col-6 col-md">
+                            <small class="text-cap">Order no.</small>
+                            <small class="text-dark font-weight-bold">456853648</small>
+                          </div>
+                        </div>
+          
+  
+                        <hr>
+  
+                        <div class="row">
+                          <div class="col-md-8">
+                            <h5>It's delivered!</h5>
+  
+                            <div class="row mx-n1">
+                              <div class="col px-1">
+                                <img class="img-fluid" src="./assets/img/380x360/img6.jpg" alt="Image Description">
+                              </div>
+                              <div class="col px-1">
+                                <img class="img-fluid" src="./assets/img/380x360/img4.jpg" alt="Image Description">
+                              </div>
+                              <div class="col px-1">
+                                <img class="img-fluid" src="./assets/img/380x360/img5.jpg" alt="Image Description">
+                              </div>
+                            </div>
+              
+                          </div>
+  
+                          <div class="col-md-4">
+                            <a class="btn btn-sm btn-block btn-white mb-2" href="#">
+                              <i class="fas fa-edit fa-sm mr-2"></i> Editar
+                            </a>
+                            <a class="btn btn-sm btn-block btn-white" href="#">
+                              <i class="fas fa-users fa-sm mr-2"></i> Asistentes
+                            </a>
+                            <a class="btn btn-sm btn-block btn-white" href="#">
+                              <i class="fas fa-trash-alt fa-sm mr-2"></i> Eliminar
+                            </a>
+                            <a class="btn btn-sm btn-block btn-primary" href="#"><i class="fas fa-link"></i> Ver
+                              Publicación</a>
+                          </div>
+                        </div>
+                      </div>
+                    </li> -->
+                                  <!-- End Card -->
+
+                                  <!-- Card -->
+                                  <% listagrupo.forEach(grupo=> { %>
+                                    <li class="card card-bordered shadow-none mb-3">
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <div class="col-6 col-md">
+                                            <small class="text-cap">Fch. de publicacion</small>
+                                            <small class="text-dark font-weight-bold">
+                                              <%= grupo.createdAt %>
+                                            </small>
+                                          </div>
+                                          <div class="col-6 col-md mb-3 mb-md-0">
+                                            <small class="text-cap">Asistentes</small>
+                                            <small class="text-dark font-weight-bold"><span
+                                                class="badge badge-pill badge-warning">Total:
+                                                3</span></small>
+                                          </div>
+                                          <div class="col-6 col-md mb-3 mb-md-0">
+                                            <small class="text-cap">Ship to</small>
+                                            <small class="text-dark font-weight-bold">Natalie Curtis</small>
+                                          </div>
+                                          <div class="col-6 col-md">
+                                            <small class="text-cap">Order no.</small>
+                                            <small class="text-dark font-weight-bold">456853648</small>
+                                          </div>
+                                        </div>
+                                        <!-- End Row -->
+
+                                        <hr>
+
+                                        <div class="row">
+                                          <div class="col-md-8">
+                                            <h4><small class="text-cap">Titulo: <span
+                                                  class="badge badge-pill badge-info">
+                                                  <%=grupo.nombre%>
+                                                </span></small></h4>
+
+                                            <div class="row mx-n1">
+                                              <div class="col-4 px-1">
+                                                <% if (grupo.imagen) { %>
+                                                  <img class="img-fluid" src="uploads/grupos/<%=grupo.imagen%>"
+                                                    alt="<%=grupo.nombre%>">
+                                                  <% }else { %>
+                                                    <img class="profile-cover-img"
+                                                      src="./assets/img/documentation/img19.jpg"
+                                                      alt="Image Description">
+                                                    <% } %>
+                                              </div>
+                                              <div class="col-8 px-1">
+                                                <h4><small class="text-cap">Descripcion:</small></h4>
+                                                <%- grupo.descripcion%>
+                                              </div>
+                                            </div>
+                                            <!-- End Row -->
+                                          </div>
+
+                                          <div class="col-md-4">
+                                            <a class="btn btn-sm btn-block btn-white mb-2"
+                                              href="/editar-grupo/<%= grupo.id %>" data-toggle="modal"
+                                              data-target="#exampleModalCenter<%= grupo.id %>">
+                                              <i class="fas fa-edit fa-sm mr-2"></i> Editar grupo
+                                            </a>
+                                            <a class="btn btn-sm btn-block btn-danger"
+                                              href="/eliminar-grupo/<%= grupo.id %>" data-toggle="modal"
+                                              data-target="#exampleModalCenter1<%= grupo.id %>">
+                                              <i class="fas fa-trash-alt fa-sm mr-2"></i> Eliminar
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- End List Item -->
+                                    </li>
+                                    <div id="exampleModalCenter<%= grupo.id %>" class="modal fade" tabindex="-1"
+                                      role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+                                      data-backdrop="static">
+                                      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                        <div class="modal-content">
+                                          <!-- Header -->
+                                          <div class="modal-top-cover bg-primary text-center">
+                                            <div class="container text-center position-relative z-index-2 space-2">
+                                              <h3 class="text-white">Editar Grupo de <%= grupo.nombre %>
+                                              </h3>
+                                            </div>
+                                            <figure class="position-absolute right-0 bottom-0 left-0">
+                                              <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                y="0px" viewBox="0 0 1920 100.1">
+                                                <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
+                                              </svg>
+                                            </figure>
+
+                                            <div class="modal-close">
+                                              <button type="button" class="btn btn-icon btn-sm btn-ghost-light"
+                                                data-dismiss="modal" aria-label="Close">
+                                                <svg width="16" height="16" viewBox="0 0 18 18"
+                                                  xmlns="http://www.w3.org/2000/svg">
+                                                  <path fill="currentColor"
+                                                    d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z">
+                                                  </path>
+                                                </svg>
+                                              </button>
+                                            </div>
+                                          </div>
+                                          <!-- End Header -->
+                                          <div class="modal-body">
+                                            <form action="/editar-grupo/<%= grupo.id %>" method="POST"
+                                              enctype="multipart/form-data">
+                                              <!-- Form Group -->
+                                              <div class="row form-group">
+                                                <label for="firstNameLabel"
+                                                  class="col-sm-3 col-form-label input-label">Nombre <i
+                                                    class="far fa-question-circle text-body ml-1" data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    title="Al crear el grupo se publicara en Meeti home."></i></label>
+
+                                                <div class="col-sm-9">
+                                                  <div class="input-group">
+                                                    <input type="text" value="<%= grupo.nombre %>" class="form-control"
+                                                      name="nombre" id="firstNameLabel"
+                                                      placeholder="Escribir nombre del grupo" aria-label="Clarice">
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <!-- End Form Group -->
+                                              <!-- Form Group -->
+                                              <div class="row form-group">
+                                                <label class="col-sm-3 col-form-label input-label">Descripcion</label>
+
+                                                <div class="col-sm-9">
+                                                  <!-- Quill -->
+                                                  <div class="quill-custom">
+                                                    <input type="hidden" id="x<%= grupo.id %>" name="descripcion"
+                                                      value="<%= grupo.descripcion %>">
+                                                    <trix-editor input="x<%= grupo.id %>"
+                                                      style="min-height: 10rem!important;"></trix-editor>
+                                                      
+                                                  </div>
+                                                  <!-- End Quill -->
+                                                </div>
+                                              </div>
+                                              <!-- End Form Group -->
+
+                                              <!-- Form Group -->
+                                              <div class="row form-group">
+                                                <label for="locationLabel1"
+                                                  class="col-sm-3 col-form-label input-label">Categoria</label>
+
+                                                <div class="col-sm-9">
+                                                  <!-- Select -->
+                                                  <div class="mb-3">
+                                                    <select class="js-custom-select custom-select dropdown-toggle"
+                                                      id="locationLabel1" data-hs-select2-options='{
+                                                "customClass": "custom-select",
+                                                "searchInputPlaceholder": "Buscar por categoria"
+                                              }' name="categoriaId">
+                                                      <option value="" selected disabled>-- Elige una categoria --
+                                                      </option>
+                                                      <% categorias.forEach(categoria=> { %>
+                                                        <option value="<%= categoria.id %>"
+                                                          <%=(grupo.categoriaId===categoria.id) ? 'selected' : '' %>
+                                                          data-option-template='<span
+                                                            class="d-flex align-items-center"><span
+                                                              class="avatar avatar-xs avatar-soft-dark avatar-circle mr-2"></span><span>
+                                                              <%= categoria.nombre %>
+                                                            </span></span>'>
+                                                          <%= categoria.nombre %>
+                                                        </option>
+                                                        <% }); %>
+
+
+                                                    </select>
+                                                  </div>
+                                                  <!-- End Select -->
+                                                </div>
+                                              </div>
+                                              <!-- End Form Group -->
+                                              <div class="row form-group">
+                                                <label for="locationLabel"
+                                                  class="col-sm-3 col-form-label input-label">Subir
+                                                  imagen</label>
+
+                                                <div class="col-sm-9">
+                                                  <div class="custom-file">
+                                                    <input type="file" name="imagen"
+                                                      class="js-file-attach custom-file-input" id="customFile"
+                                                      data-hs-file-attach-options='{
+                                                "textTarget": "[for=\"customFile\"]"
+                                             }'>
+                                                    <label class="custom-file-label" for="customFile">Dar click</label>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                              <div class="row form-group">
+                                                <% if (grupo.imagen) { %>
+                                                  <label for="locationLabel"
+                                                    class="col-sm-3 col-form-label input-label">Imagen Actual</label>
+                                                  <div class="col-sm-9">
+                                                    <div class="overflow-hidden rounded-lg-pseudo">
+                                                      <img
+                                                        class="img-fluid card shadow-none min-h-270rem bg-img-hero gradient-y-overlay-lg-dark transition-zoom-hover"
+                                                        src="/uploads/grupos/<%=grupo.imagen%>" style="bottom: 10px;">
+                                                    </div>
+                                                  </div>
+                                                  <% } else { %>
+                                                    <label for="locationLabel"
+                                                      class="col-sm-3 col-form-label input-label">Imagen Default</label>
+                                                    <div class="col-sm-9">
+                                                      <div class="overflow-hidden rounded-lg-pseudo">
+                                                        <img
+                                                          class="img-fluid card shadow-none min-h-270rem bg-img-hero gradient-y-overlay-lg-dark transition-zoom-hover"
+                                                          src="./assets/img/documentation/img19.jpg"
+                                                          style="bottom: 10px;">
+                                                      </div>
+                                                    </div>
+
+                                                    <% } %>
+                                              </div>
+                                              <div class="row form-group">
+                                                <label for="locationLabel"
+                                                  class="col-sm-3 col-form-label input-label">Sitio
+                                                  Web</label>
+
+                                                <div class="col-sm-9">
+                                                  <input type="url" value="<%= grupo.url %>" name="url"
+                                                    class="form-control" placeholder="Sitio Web">
+                                                </div>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-white"
+                                                  data-dismiss="modal">Cerrar</button>
+                                                <input type="submit" class="btn btn-primary" value="Guardar Cambios">
+                                              </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div id="exampleModalCenter1<%= grupo.id %>" class="modal fade" tabindex="-1"
+                                      role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+                                      data-backdrop="static">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                          <!-- Header -->
+                                          <div class="modal-top-cover bg-danger text-center">
+                                            <div class="container text-center position-relative z-index-2 space-2">
+                                              <h3 class="text-white"><i class="fas fa-info-circle mt-1 mr-1"></i> Eliminar <%= grupo.nombre %>/<%= grupo.imagen %>
+                                              </h3>
+                                            </div>
+                                            <figure class="position-absolute right-0 bottom-0 left-0">
+                                              <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                y="0px" viewBox="0 0 1920 100.1">
+                                                <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
+                                              </svg>
+                                            </figure>
+
+                                            <div class="modal-close">
+                                              <button type="button" class="btn btn-icon btn-sm btn-ghost-light"
+                                                data-dismiss="modal" aria-label="Close">
+                                                <svg width="16" height="16" viewBox="0 0 18 18"
+                                                  xmlns="http://www.w3.org/2000/svg">
+                                                  <path fill="currentColor"
+                                                    d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z">
+                                                  </path>
+                                                </svg>
+                                              </button>
+                                            </div>
+                                          </div>
+                                          <!-- End Header -->
+                                          <div class="modal-body">
+                                            <form action="/eliminar-grupo/<%= grupo.id %>" method="POST"
+                                              enctype="multipart/form-data">
+
+                                              <h5 style="text-align: center;"><strong>¿Estas seguro que deseas eliminar <%= grupo.nombre %>?</strong></h5>
+
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-white"
+                                                  data-dismiss="modal">Cancelar</button>
+                                                <input type="submit" class="btn btn-danger" value="Eliminar Grupo">
+                                              </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <% }); %>
+
+                                      <!-- End End Card -->
+                                </ul>
+
+                                <!-- Pagination -->
+                                <nav class="d-flex justify-content-end mt-5" aria-label="Page navigation">
+                                  <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                  </ul>
+                                </nav>
+                                <!-- End Pagination -->
+                                <% } else{ %>
+                                  <div class="text-center space-1">
+                                    <img class="avatar avatar-xl mb-3"
+                                      src="./assets/svg/components/empty-state-no-data.svg" alt="Image Description">
+                                    <div class="alert alert-soft-primary" role="alert">
+                                      <i class="fas fa-info-circle mt-1 mr-1"></i>
+                                      No tienes un grupo creado
+                                    </div>
+
+                                  </div>
+                                  <% } %>
+                            </div>
+                            <!-- /////////////////////////// FIN DE LISTADO DE NUEVOS GRUPO//////////////////////////////////////// -->
+
+                            <!-- ///////////////////////////FORMULARIO PARA NUEVO GRUPO//////////////////////////////////////// -->
+                            <div class="tab-pane fade" id="open-orders" role="tabpanel"
+                              aria-labelledby="open-orders-tab">
+                              <form action="/nuevo-grupo" method="POST" enctype="multipart/form-data">
+                                <!-- Form Group -->
+                                <div class="row form-group">
+                                  <label for="firstNameLabel" class="col-sm-3 col-form-label input-label">Nombre <i
+                                      class="far fa-question-circle text-body ml-1" data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Al crear el grupo se publicara en Meeti home."></i></label>
+
+                                  <div class="col-sm-9">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="nombre" id="firstNameLabel"
+                                        placeholder="Escribir nombre del grupo" aria-label="Clarice">
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- End Form Group -->
+                                <!-- Form Group -->
+                                <div class="row form-group">
+                                  <label class="col-sm-3 col-form-label input-label">Descripcion</label>
+
+                                  <div class="col-sm-9">
+                                    <!-- Quill -->
+                                    <div class="quill-custom">
+                                      <input type="hidden" id="x" name="descripcion">
+                                      <trix-editor input="x" style="min-height: 20rem!important;"></trix-editor>
+                                    </div>
+                                    <!-- End Quill -->
+                                  </div>
+                                </div>
+                                <!-- End Form Group -->
+
+                                <!-- Form Group -->
+                                <div class="row form-group">
+                                  <label for="locationLabel"
+                                    class="col-sm-3 col-form-label input-label">Categoria</label>
+
+                                  <div class="col-sm-9">
+                                    <!-- Select -->
+                                    <div class="mb-3">
+                                      <select class="js-custom-select custom-select dropdown-toggle" id="locationLabel"
+                                        data-hs-select2-options='{
+                                  "customClass": "custom-select",
+                                  "searchInputPlaceholder": "Buscar por categoria"
+                                }' name="categoriaId">
+                                        <option value="" selected disabled>-- Elige una categoria --</option>
+                                        <% categorias.forEach(categoria=> { %>
+                                          <option value="<%= categoria.id %>"
+                                            data-option-template='<span class="d-flex align-items-center"><span class="avatar avatar-xs avatar-soft-dark avatar-circle mr-2"></span><span><%= categoria.nombre %></span></span>'>
+                                            <%= categoria.nombre %>
+                                          </option>
+                                          <% }); %>
+
+
+                                      </select>
+                                    </div>
+                                    <!-- End Select -->
+                                  </div>
+                                </div>
+                                <!-- End Form Group -->
+                                <div class="row form-group">
+                                  <label for="locationLabel" class="col-sm-3 col-form-label input-label">Subir
+                                    imagen</label>
+
+                                  <div class="col-sm-9">
+                                    <div class="custom-file">
+                                      <input type="file" name="imagen" class="js-file-attach custom-file-input"
+                                        id="customFile" data-hs-file-attach-options='{
+                                  "textTarget": "[for=\"customFile\"]"
+                               }'>
+                                      <label class="custom-file-label" for="customFile">Dar click</label>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row form-group">
+                                  <label for="locationLabel" class="col-sm-3 col-form-label input-label">Sitio
+                                    Web</label>
+
+                                  <div class="col-sm-9">
+                                    <input type="url" name="url" class="form-control" placeholder="Sitio Web">
+                                  </div>
+                                </div>
+
+                                <div class="card-footer d-flex justify-content-end">
+                                  <input type="submit" class="btn btn-primary" value="Crear Grupo">
+                                </div>
+                              </form>
+                            </div>
+                            <!-- End Body -->
+                            <!-- /////////////////////////// FIN FORMULARIO PARA NUEVO GRUPO//////////////////////////////////////// -->
+                          </div>
+                          <!-- End Tab Content -->
+                        </div>
+                        <!-- End Body -->
+        </div>
+        <!-- End Card -->
+      </div>
+    </div>
+    <!-- End Row -->
+  </div>
+  <!-- End Content Section -->
+</main>
+<!-- ========== END MAIN ========== -->

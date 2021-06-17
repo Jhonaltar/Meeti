@@ -1,0 +1,342 @@
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+    <!-- Hero Section -->
+    <div class="position-relative">
+        <!-- Main Slider -->
+        <div id="heroSlider" class="js-slick-carousel slick" data-hs-slick-carousel-options='{
+           "vertical": true,
+           "verticalSwiping": true,
+           "autoplay": true,
+           "autoplaySpeed": 10000,
+           "dots": true,
+           "dotsClass": "slick-pagination slick-pagination-white d-lg-none position-absolute bottom-0 right-0 left-0 mb-3",
+           "asNavFor": "#heroSliderNav",
+           "responsive": [
+             {
+               "breakpoint": 576,
+               "settings": {
+                 "vertical": false,
+                 "verticalSwiping": false
+               }
+             }
+           ]
+         }'>
+         <% if(meetisheroSlider.length > 0) { %>
+            <% meetisheroSlider.forEach(meeti => { %>
+            <div class="js-slide d-flex gradient-x-overlay-sm-dark bg-img-hero min-h-620rem"
+                style="background-image: url(./assets/img/1920x1080/img3.jpg);">
+                <!-- News Block -->
+                <div class="container d-flex align-items-center min-h-620rem">
+                    <div class="w-lg-40 mr-5">
+                        <!-- Author -->
+                        <div class="media align-items-center mb-3" data-hs-slick-carousel-animation="fadeInUp">
+                            <div class="avatar avatar-sm avatar-circle mr-3">
+                                <% if(meeti.usuario.imagen) { %>
+                                    <img class="avatar-img" src="/uploads/perfiles/<%= meeti.usuario.imagen%>" alt="Image Description">
+                                <% } else { %>
+                                    <img class="avatar-img" src="/assets/img/100x100/img12.jpg" alt="Image Description"> 
+                                <% }  %>
+                                
+                            </div>
+                            <div class="media-body">
+                                <a class="text-white" ><%= meeti.usuario.nombre %></a>
+                            </div>
+                        </div>
+                        <!-- End Author -->
+
+                        <div class="mb-5">
+                            <h3 class="h1 font-weight-bold text-white" data-hs-slick-carousel-animation="fadeInUp"
+                                data-hs-slick-carousel-animation-delay="150"><%= meeti.titulo %></h3>
+                        </div>
+                        <a class="btn btn-primary btn-wide transition-3d-hover" href="/meeti/<%= meeti.slug %>"
+                            data-hs-slick-carousel-animation="fadeInUp"
+                            data-hs-slick-carousel-animation-delay="300">Leer mas del evento <i
+                                class="fas fa-angle-right fa-sm ml-1"></i></a>
+                    </div>
+                </div>
+                <!-- End News Block -->
+            </div>
+            <% }) %> 
+            <% } %>
+           
+        </div>
+        <!-- End Main Slider -->
+
+        <!-- Slider Nav -->
+        <div class="container slick-pagination-line-wrapper content-centered-y right-0 left-0">
+            <div class="content-centered-y right-0 mr-3">
+                <div id="heroSliderNav" class="js-slick-carousel slick slick-pagination-line max-w-27rem ml-auto"
+                    data-hs-slick-carousel-options='{
+               "vertical": true,
+               "verticalSwiping": true,
+               "autoplay": true,
+               "autoplaySpeed": 10000,
+               "slidesToShow": 3,
+               "isThumbs": true,
+               "asNavFor": "#heroSlider"
+             }'>
+             <% if(meetisheroSlider.length > 0) { %>
+                <% meetisheroSlider.forEach(meeti => { %>
+                    <div class="js-slide my-3">
+                        <span class="text-white"><%= meeti.titulo %></span>
+                        <span class="slick-pagination-line-progress">
+                            <span class="slick-pagination-line-progress-helper"></span>
+                        </span>
+                    </div>
+                    <% }) %> 
+                <% } %>
+                </div>
+            </div>
+        </div>
+         
+        <!-- End Slider Nav -->
+    </div>
+    <!-- End Hero Section -->
+
+
+   <!-- CTA Section -->
+<div class="bg-img-hero rounded-lg p-6">
+    <div class="text-center py-6" style="background: url(../assets/svg/components/abstract-shapes-19.svg) center no-repeat;" data-aos="fade-up">
+        <div class="w-lg-85 mx-lg-auto">
+            <br>
+            <h5 class="display-4 mb-3" style="text-align: center;">Busca un grupo en tu ciudad</h5>
+            <div class="card p-2 mb-3">
+                <!-- Input Group -->
+                <form action="/busqueda" method="GET">
+                    <div class="form-row input-group-borderless">
+                        <div class="col-sm mb-2 mb-md-0">
+                            <div class="input-group input-group-merge input-group-borderless">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+        
+                                <input type="text" class="form-control" placeholder="Nombre del Meeti" name="titulo"
+                                    aria-label="Nombre del Meeti">
+                            </div>
+                        </div>
+        
+                        <div class="col-sm d-sm-none">
+                            <hr class="my-0">
+                        </div>
+        
+                        <div class="col-sm column-divider-sm mb-2 mb-md-0">
+                            <div class="input-group input-group-merge input-group-borderless">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </div>
+                                </div>
+        
+                                <input type="text" class="form-control" placeholder="Ciudad donde se encuentra el Meeti" name="ciudad"
+                                    aria-label="Ciudad donde se encuentra el Meeti">
+                            </div>
+                        </div>
+        
+                        <div class="col-sm column-divider-sm mb-2 mb-md-0">
+                            <div class="input-group input-group-merge input-group-borderless">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-globe-americas"></i>
+                                    </div>
+                                </div>
+        
+                                <select class="js-custom-select custom-select dropdown-toggle" name="pais" data-hs-select2-options='{
+                                    "customClass": "custom-select",
+                                    "searchInputPlaceholder": "Buscar por categoria"
+                                    }'>
+                                    <option value="" selected>-- Pais --</option>
+                                    <option value="ECU">Ecuador</option>
+                                    <option value="COL">Colombia</option>
+                                    <option value="ARG">Argentina</option>
+                                    <option value="ESP">España</option>
+                                    <option value="USA">Estados Unidos</option>
+                                    <option value="PER">Perú</option>
+                                </select>
+                            </div>
+                        </div>
+        
+                        <div class="col-sm column-divider-sm mb-2 mb-md-0">
+                            <select class="js-custom-select custom-select dropdown-toggle" id="locationLabel1"
+                                data-hs-select2-options='{
+                "customClass": "custom-select",
+                "searchInputPlaceholder": "Buscar por categoria"
+                }' name="categoria">
+                                <option value="" selected>-- Todas --
+                                </option>
+                                <% categorias.forEach(categoria => { %>
+                                    <option value="<%= categoria.id %>" data-option-template='<span
+                                        class="d-flex align-items-center"><span
+                                        class="avatar avatar-xs avatar-soft-dark avatar-circle mr-2"></span><span>
+                                        <%= categoria.nombre %>
+                                        </span></span>'>
+                                        <%= categoria.nombre %>
+                                </option>
+                                <% }) %> 
+                            </select>
+                        </div>
+                        <div class="col-md-auto">
+                            <input type="submit" class="btn btn-block btn-primary px-5" value="Buscar">
+                        </div>
+                    </div>
+                </form>
+                <!-- End Input Group -->
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- End CTA Section -->
+
+    <!-- Features Section -->
+    <div class="bg-dark rounded-lg mx-3 mx-xl-10"
+        style="background-image: url(./assets/svg/components/abstract-shapes-20.svg);" data-aos="fade-up">
+        <div class="container-xl container-fluid space-1 space-md-2 px-4 px-md-8 px-lg-10">
+            <div class="px-3">
+                <!-- Title -->
+                <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+                    <h2 class="text-white">Proximos Meeti's</h2>
+                </div>
+                <!-- End Title -->
+
+                <!-- Slick Carousel -->
+                <div class="js-slick-carousel slick slick-equal-height ie-slick-equal-height slick-gutters-3"
+                data-hs-slick-carousel-options='{
+                    "prevArrow": "<span class=\"fas fa-arrow-left slick-arrow slick-arrow-left slick-arrow-centered-y shadow-soft rounded-circle ml-sm-2 ml-md-n2\"></span>",
+                    "nextArrow": "<span class=\"fas fa-arrow-right slick-arrow slick-arrow-right slick-arrow-centered-y shadow-soft rounded-circle mr-sm-2 mr-md-n2\"></span>",
+                    "slidesToShow": 3,
+                    "responsive": [{
+                      "breakpoint": 992,
+                        "settings": {
+                          "slidesToShow": 2
+                        }
+                      }, {
+                      "breakpoint": 768,
+                      "settings": {
+                        "slidesToShow": 1
+                      }
+                    }]
+                  }'>
+                  <% if(meetis.length > 0) { %>
+                    <% meetis.forEach(meeti => { %> 
+                    <div class="js-slide mb-4">
+                        <!-- Card Info -->
+                        
+                        <div class="card h-100">
+                            <% if(meeti.grupo.imagen) { %>
+                                <img class="card-img-top" src="/uploads/grupos/<%= meeti.grupo.imagen%>">
+                            <% } else { %>
+                                <img class="card-img-top" src="/assets/svg/components/abstract-shapes-15.svg" > 
+                            <% }  %>
+                            
+                            <div class="card-body">
+                                
+                                    <div class="row mb-3">
+                                      <div class="col">
+                                        <div class="media align-items-center">
+                                            <% if(meeti.usuario.imagen) { %>
+                                                <img class="avatar avatar-sm mr-3" src="/uploads/perfiles/<%= meeti.usuario.imagen %>" alt="Image Description">
+                                            <% } else { %>
+                                                <img class="avatar avatar mr-4" src="/assets/img/100x100/img12.jpg" alt="Image Description"> 
+                                            <% }  %>      
+                                          <div class="media-body">
+                                            <h5 class="mb-0">
+                                                <p class="text-body mb-1">Organizado por:</p>
+                                              <a class="text-dark"><%= meeti.usuario.nombre %></a>
+                                            </h5>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <!-- End Row -->
+                  
+                                    <h3 class="mb-3">
+                                      <a class="text-dark" href="/meeti/<%= meeti.slug %>"><%= meeti.titulo %> </a>
+                                    </h3>
+                                    <% moment.locale('es') %> 
+                                    <% const fecha = meeti.fecha +' '+ meeti.hora %>
+                                    <span class="d-block font-size-1 text-body mb-1"><strong>fecha: </strong><span class="badge badge-pill badge-warning"><%= moment(fecha).format('LL') %> </span></span>
+                                    <span class="d-block font-size-1 text-body mb-1"><strong>Hora: </strong><span class="badge badge-pill badge-success"><%= moment(fecha).format('h:mm a') %> </span></span>
+                  
+                                    <!-- <span class="badge badge-soft-info mr-2">
+                                      <span class="legend-indicator bg-info"></span>Remote
+                                    </span> -->
+                                  
+                            </div>
+                            <div class="card-footer border-0 pt-0">
+                                <a class="font-weight-bold" href="/meeti/<%= meeti.slug %>">Leer mas del evento <i
+                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
+                            </div>
+                        </div>
+                        
+                        <!-- End Card Info -->
+                    </div>
+                    <% }) %> 
+                        <% } %> 
+                </div>
+                <!-- End Slick Carousel -->
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary" href="#">Visualizar todos los meeti's <i
+                        class="fas fa-angle-right ml-1"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- End Features Section -->
+
+    <br>
+
+    <!-- Properties Section -->
+    
+    <div class="container space-bottom-2 space-bottom-lg-1 ">
+        <!-- Title -->
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-7">
+            <h5 class="display-4 mb-3" style="text-align: center;">Busca un grupo por categoria</h5>
+        </div>
+        <!-- End Title -->
+        <!-- Tab Content -->
+        <div class="tab-content aos-init" id="houseHeroTabContent">
+            <div class="tab-pane fade show active" id="for-sale" role="tabpanel" aria-labelledby="for-sale-tab">
+                <!-- Slick Carousel -->
+                <div class="row mx-n2" data-aos="fade-up">
+                    <% categorias.forEach(categoria =>{ %>
+                    <div class="col-sm-6 col-lg-4 px-2 mb-3">
+                        <!-- Card -->
+                        
+                            <div class="overflow-hidden rounded-lg-pseudo">
+                                <a class="card shadow-none min-h-270rem bg-img-hero gradient-y-overlay-lg-dark transition-zoom-hover"
+                                    href="/categoria/<%= categoria.slug %> ">
+                                    <img src="/assets/img/categoria_<%= categoria.id %>.jpg" alt="<%= categoria.nombre %>" class="min-h-270rem">
+                                    <div class="position-absolute top-0 left-0 p-4">
+                                    </div>
+                                    <div class="position-absolute right-0 bottom-0 left-0 p-4">
+                                        <h3 class="text-white mb-0"><span class="badge badge-pill badge-light"><%= categoria.nombre %></span></h3>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                        <!-- End Card -->
+                    </div>
+                    <% }) %>    
+                </div>
+                <!-- End Slick Carousel -->
+            </div>
+
+            
+        </div>
+        <!-- End Tab Content -->
+    </div>
+
+    <!-- End Properties Section -->
+
+</main>
+<!-- ========== END MAIN ========== -->
+
+<div id="jsPreloader" class="page-preloader">
+        <div class="page-preloader-content-centered">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+</div>

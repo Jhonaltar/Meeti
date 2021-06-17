@@ -1,0 +1,62 @@
+ <main id="content" role="main">
+    <!-- Login Form -->
+    <div class="container space-2 space-lg-3">
+      <form class="js-validate w-md-75 w-lg-50 mx-md-auto" action="/iniciar-sesion" method="POST">
+        <!-- Title -->
+        <% if(locals.mensajes) { %>
+          <% const categoria = Object.keys(locals.mensajes)  %> 
+          <% if (categoria.length) { %>
+              <% locals.mensajes[categoria].forEach(alerta =>{ %> 
+                  <div class="alertas">
+                      <div class="alert alert-<%- categoria %>  text-center font-size-1 mb-0" role="alert">
+                          <span class="font-weight-bold"><i class="fas fa-info-circle mt-1 mr-1"></i></span><%= alerta %> 
+                      </div>
+                      <br>
+                  </div>
+              <% }) %>
+          <% } %>
+      <% } %>
+            
+        <div class="mb-5 mb-md-7">
+          <h1 class="h2 mb-0"><%= nombrePagina %></h1>
+          <p>Inicie sesión para administrar su cuenta.</p>
+        </div>
+        <!-- End Title -->
+
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="signinSrEmail">Correo electrónico</label>
+          <input type="email" class="form-control" name="email" id="signinSrEmail" placeholder="Email address" aria-label="Email address" 
+          data-msg="Por favor, escriba un correo electrónico válido.">
+        </div>
+        <!-- End Form Group -->
+
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="signinSrPassword">
+            <span class="d-flex justify-content-between align-items-center">
+              Contraseña
+              <a class="link-underline text-capitalize font-weight-normal" href="#">Olvidates tu contraseña?</a>
+            </span>
+          </label>
+          <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********" aria-label="********"
+          data-msg="Su contraseña es inválida. Inténtalo de nuevo">
+        </div>
+        <!-- End Form Group -->
+
+        <!-- Button -->
+        <div class="row align-items-center mb-5">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <span class="font-size-1 text-muted">Aun no tienes cuneta?</span>
+            <a class="font-size-1 font-weight-bold" href="/crear-cuenta">Crear Cuenta</a>
+          </div>
+
+          <div class="col-sm-6 text-sm-right">
+            <input type="submit" class="btn btn-primary transition-3d-hover" value="Iniciar Sesión">
+          </div>
+        </div>
+        <!-- End Button -->
+      </form>
+    </div>
+    <!-- End Login Form -->
+  </main>

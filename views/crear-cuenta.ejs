@@ -1,0 +1,73 @@
+<main id="content" role="main">
+    <!-- Login Form -->
+    <div class="container space-2 space-lg-2">
+        <form class="js-validate w-md-75 w-lg-50 mx-md-auto" action="/crear-cuenta" method="POST">
+            <!-- Title -->
+            <% if(locals.mensajes) { %>
+                <% const categoria = Object.keys(locals.mensajes)  %> 
+                  <% if (categoria.length) { %>
+                      <% locals.mensajes[categoria].forEach(alerta =>{ %> 
+                        <div class="alertas">
+                            <div class="alert alert-danger text-center font-size-1 mb-0" role="alert">
+                                <span class="font-weight-bold"><i class="fas fa-info-circle mt-1 mr-1"></i></span><%= alerta %> 
+                            </div>
+                            <br>
+                        </div>
+                      <% }) %> 
+                  <% } %>
+            <% } %>
+            <div class="mb-5 mb-md-7">
+                <h1 class="h2 mb-0">
+                    <%= nombrePagina %>
+                </h1>
+                <p>Complete el formulario para comenzar.</p>
+            </div>
+            <!-- End Title required-->
+            <!-- Form Group -->
+            <div class="js-form-message form-group">
+                <label class="input-label" for="signinSrEmail">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Escribir un correo electrónico"
+                    aria-label="Email address"  data-msg="Por favor, escriba un correo electrónico válido." />
+            </div>
+            <!-- End Form Group -->
+             <!-- Form Group -->
+             <div class="js-form-message form-group">
+                <label class="input-label" for="signinSrEmail">Nombre</label>
+                <input type="text" class="form-control" name="nombre" placeholder="Escribir tus nombres completos"
+                    aria-label="Nombre"  data-msg="Por favor, escriba un nombre valido." />
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="js-form-message form-group">
+                <label class="input-label" for="signinSrPassword">Contraseña</label>
+                <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********"
+                    aria-label="********"  data-msg="Su contraseña es inválida. Inténtalo de nuevo" />
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="js-form-message form-group">
+                <label class="input-label" for="signinSrConfirmPassword">Confirmar Contraseña</label>
+                <input type="password" class="form-control" name="confirmar" id="signinSrConfirmPassword"
+                    placeholder="********" aria-label="********" 
+                    data-msg="La contraseña no coincide con la contraseña de confirmación." />
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Button -->
+            <div class="row align-items-center mb-5">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <span class="font-size-1 text-muted">Ya tiene una cuenta?</span>
+                    <a class="font-size-1 font-weight-bold" href="/iniciar-sesion">Iniciar Sesión</a>
+                </div>
+
+                <div class="col-sm-6 text-sm-right">
+                    <input type="submit" class="btn btn-primary transition-3d-hover" value="Crear Cuenta">
+                </div>
+            </div>
+            <!-- End Button -->
+        </form>
+    </div>
+    <!-- End Login Form -->
+</main>

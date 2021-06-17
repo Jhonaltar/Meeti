@@ -1,0 +1,282 @@
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+
+<% primer_array =[] %> 
+            <% if(locals.mensajes) { %>
+                <% const categoria = Object.keys(locals.mensajes)  %> 
+                  <% if (categoria.length) { %>
+                      <% locals.mensajes[categoria].forEach(alerta =>{ %> 
+                        <!-- <div class="alertas">
+                            <div class="alert alert-danger text-center font-size-1 mb-0" role="alert">
+                                <span class="font-weight-bold"><i class="fas fa-info-circle mt-1 mr-1"></i></span><%= alerta %> 
+                            </div>
+                            <br>
+                        </div> -->
+                        <% primer_array.push(alerta) %>
+                      <% }) %> 
+                  <% } %>
+            <% } %>
+
+             <script type="text/javascript">
+
+     $(document).ready(function () {
+      var error= "<%= primer_array %>"
+      var error1= error.split(',').map(frase =>`<h5><li><span class="badge badge-pill badge-dark">${frase}</span></li></h5>`).join('\n\n');
+    
+      if (error != '') {
+        $.toast({
+        type: 'error',
+        title: 'Importante!',
+        subtitle: 'Error',
+        content: error1,
+        position: 'top-center',
+        delay: 5000
+      });
+      } 
+
+     })
+      
+    </script>
+
+https://codepen.io/JacobLett/pen/wNEydz
+https://kamranahmed.info/toast
+
+style="width: 500px;height: 500px;"
+https://www.syncfusion.com/javascript-ui-controls/js-toast
+https://www.jqueryscript.net/blog/Best-Toast-Notification-jQuery-Plugins.html
+
+
+
+la parte de admin grupo de solo subir imagen
+<div id="exampleModalCenter1<%= grupo.id %>" class="modal fade" tabindex="-1"
+                                      role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+                                      data-backdrop="static">
+                                      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                        <div class="modal-content">
+                                          <!-- Header -->
+                                          <div class="modal-top-cover bg-primary text-center">
+                                            <div class="container text-center position-relative z-index-2 space-2">
+                                              <h3 class="text-white">Editar imagen del Grupo <%= grupo.nombre %>
+                                              </h3>
+                                            </div>
+                                            <figure class="position-absolute right-0 bottom-0 left-0">
+                                              <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                y="0px" viewBox="0 0 1920 100.1">
+                                                <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
+                                              </svg>
+                                            </figure>
+
+                                            <div class="modal-close">
+                                              <button type="button" class="btn btn-icon btn-sm btn-ghost-light"
+                                                data-dismiss="modal" aria-label="Close">
+                                                <svg width="16" height="16" viewBox="0 0 18 18"
+                                                  xmlns="http://www.w3.org/2000/svg">
+                                                  <path fill="currentColor"
+                                                    d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z">
+                                                  </path>
+                                                </svg>
+                                              </button>
+                                            </div>
+                                          </div>
+                                          <!-- End Header -->
+                                          <div class="modal-body">
+                                            <form action="/editar-imggrupo/<%= grupo.id %>" method="POST" enctype="multipart/form-data">
+                                              <div class="row form-group">
+                                                <% if (grupo.imagen) { %>
+                                                  <label for="locationLabel"
+                                                  class="col-sm-3 col-form-label input-label">Imagen Actual</label>
+                                                  <div class="col-sm-9">
+                                                    <div class="overflow-hidden rounded-lg-pseudo">
+                                                      <img
+                                                        class="img-fluid card shadow-none min-h-270rem bg-img-hero gradient-y-overlay-lg-dark transition-zoom-hover"
+                                                        src="/uploads/grupos/<%=grupo.imagen%>" style="bottom: 10px;">
+                                                    </div>
+                                                  </div>
+                                                <% } else { %>
+                                                  <label for="locationLabel"
+                                                  class="col-sm-3 col-form-label input-label">Imagen Default</label>
+                                                  <div class="col-sm-9">
+                                                    <div class="overflow-hidden rounded-lg-pseudo">
+                                                      <img class="img-fluid card shadow-none min-h-270rem bg-img-hero gradient-y-overlay-lg-dark transition-zoom-hover"
+                                                      src="./assets/img/documentation/img19.jpg" style="bottom: 10px;"
+                                                      >
+                                                    </div>
+                                                  </div>
+                                                 
+                                                <% } %> 
+                                                <label for="locationLabel"
+                                                  class="col-sm-3 col-form-label input-label">Subir
+                                                  imagen</label>
+
+                                                <div class="col-sm-9">
+                                                  <div class="custom-file">
+                                                    <input type="file" name="imagen"
+                                                      class="js-file-attach custom-file-input" id="customFile"
+                                                      data-hs-file-attach-options='{
+                                                "textTarget": "[for=\"customFile\"]"
+                                             }'>
+                                                    <label class="custom-file-label" for="customFile">Dar click</label>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-white"
+                                                  data-dismiss="modal">Cerrar</button>
+                                                <input type="submit" class="btn btn-primary" value="Guardar Cambios">
+                                              </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+                                    import { OpenStreetMapProvider } from 'leaflet-geosearch'; 
+
+const lat= -2.131331438340233;
+const lng=  -79.60297255820848;
+const map = L.map('mapa').setView([lat, lng], 15);
+
+let markers = new L.FeatureGroup().addTo(map)
+let marker;
+
+document.addEventListener('DOMContentLoaded', () => {
+            L.tileLayer(
+                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }
+            ).addTo(map);
+
+            //buscar direccion
+        const buscador = document.querySelector('#formbuscador');
+        buscador.addEventListener('input', buscarDireccion)
+})
+
+function buscarDireccion(e) {
+    if (e.target.value.length > 10) {
+        // si existe un pin anterior limpiarlo
+        markers.clearLayers();
+
+        // utilizar el provider y geocoder
+        //const geocodeService = L.esri.Geocoding.geocodeService();
+        const provider = new OpenStreetMapProvider();
+        provider.search({query: e.target.value}).then((resultado) =>{
+        
+               /*  geocodeService.reverse().latlng(resultado[0].bounds[0], 15 ).run(function(error, result) {
+                console.log(result);
+               
+            }) */
+              //mostrar el mapa
+              map.setView(resultado[0].bounds[0],15);
+              //agregar el pin
+              marker = new L.marker(resultado[0].bounds[0], {
+                  draggable: true,
+                  autoPan: true
+              })
+              .addTo(map)
+              .bindPopup(resultado[0].label)
+              .openPopup()
+
+              //asignar contenerdor
+              markers.addLayer(marker)
+
+              //detectar movimiento del marker
+              marker.on('moveend', function (e) {
+                  marker = e.target;
+                  const posicion = marker.getLatLng();
+                  map.panTo(new L.LatLng(posicion.lat, posicion.lng));
+
+                  //reverse geocodin,
+                  geocodeService.reverse().latlng(posicion, 15 ).run(function(error, result) {
+                      console.log(result);
+                  })
+              });
+
+        })
+    }
+}
+
+
+
+[
+  {
+    "id": 1,
+    "nombre": "Programación",
+    "createdAt": "2021-04-01 13:41:42.791881-05",
+    "updatedAt": "2021-04-01 13:41:42.791881-05"
+  },
+  {
+    "id": 2,
+    "nombre": "Diseño",
+    "createdAt": "2021-04-01 13:44:53.416628-05",
+    "updatedAt": "2021-04-01 13:44:53.416628-05"
+  },
+  {
+    "id": 3,
+    "nombre": "Negocios y Emprendimiento",
+    "createdAt": "2021-04-01 13:44:53.416628-05",
+    "updatedAt": "2021-04-01 13:44:53.416628-05"
+  },
+  {
+    "id": 4,
+    "nombre": "Moda y Estilo",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  },
+  {
+    "id": 5,
+    "nombre": "Salud y Ejercicio",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  },
+  {
+    "id": 6,
+    "nombre": "Fotografía y Viajes",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  },
+  {
+    "id": 7,
+    "nombre": "Comida y Bebida",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  },
+  {
+    "id": 8,
+    "nombre": "Diseño y Arquitectura",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  },
+  {
+    "id": 9,
+    "nombre": "Café",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  },
+  {
+    "id": 10,
+    "nombre": "Cine y Películas",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  },
+  {
+    "id": 11,
+    "nombre": "Libros",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  },
+  {
+    "id": 12,
+    "nombre": "Aprendizaje",
+    "createdAt": "2021-04-01 13:48:41.712229-05",
+    "updatedAt": "2021-04-01 13:48:41.712229-05"
+  }
+]

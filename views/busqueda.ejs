@@ -1,0 +1,223 @@
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+    
+   <!-- CTA Section -->
+<div class="bg-img-hero rounded-lg p-6">
+    <div class="text-center py-6" style="background: url(../assets/svg/components/abstract-shapes-19.svg) center no-repeat;" data-aos="fade-up">
+        <div class="w-lg-85 mx-lg-auto">
+            <br>
+            <h5 class="display-4 mb-3" style="text-align: center;">Busca un grupo en tu ciudad</h5>
+            <div class="card p-2 mb-3">
+                <!-- Input Group -->
+                <form action="/busqueda" method="GET">
+                    <div class="form-row input-group-borderless">
+                        <div class="col-sm mb-2 mb-md-0">
+                            <div class="input-group input-group-merge input-group-borderless">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+        
+                                <input type="text" class="form-control" placeholder="Nombre del Meeti" name="titulo"
+                                    aria-label="Nombre del Meeti">
+                            </div>
+                        </div>
+        
+                        <div class="col-sm d-sm-none">
+                            <hr class="my-0">
+                        </div>
+        
+                        <div class="col-sm column-divider-sm mb-2 mb-md-0">
+                            <div class="input-group input-group-merge input-group-borderless">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </div>
+                                </div>
+        
+                                <input type="text" class="form-control" placeholder="Ciudad donde se encuentra el Meeti" name="ciudad"
+                                    aria-label="Ciudad donde se encuentra el Meeti">
+                            </div>
+                        </div>
+        
+                        <div class="col-sm column-divider-sm mb-2 mb-md-0">
+                            <div class="input-group input-group-merge input-group-borderless">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-globe-americas"></i>
+                                    </div>
+                                </div>
+        
+                                <select class="js-custom-select custom-select dropdown-toggle" name="pais" data-hs-select2-options='{
+                                    "customClass": "custom-select",
+                                    "searchInputPlaceholder": "Buscar por categoria"
+                                    }'>
+                                    <option value="" selected>-- Pais --</option>
+                                    <option value="ECU">Ecuador</option>
+                                    <option value="COL">Colombia</option>
+                                    <option value="ARG">Argentina</option>
+                                    <option value="ESP">España</option>
+                                    <option value="USA">Estados Unidos</option>
+                                    <option value="PER">Perú</option>
+                                </select>
+                            </div>
+                        </div>
+        
+                        <div class="col-sm column-divider-sm mb-2 mb-md-0">
+                            <select class="js-custom-select custom-select dropdown-toggle" id="locationLabel1"
+                                data-hs-select2-options='{
+                "customClass": "custom-select",
+                "searchInputPlaceholder": "Buscar por categoria"
+                }' name="categoria">
+                                <option value="" selected>-- Todas --
+                                </option>
+                                <% categorias.forEach(categoria => { %>
+                                    <option value="<%= categoria.id %>" data-option-template='<span
+                                        class="d-flex align-items-center"><span
+                                        class="avatar avatar-xs avatar-soft-dark avatar-circle mr-2"></span><span>
+                                        <%= categoria.nombre %>
+                                        </span></span>'>
+                                        <%= categoria.nombre %>
+                                </option>
+                                <% }) %> 
+                            </select>
+                        </div>
+                        <div class="col-md-auto">
+                            <input type="submit" class="btn btn-block btn-primary px-5" value="Buscar">
+                        </div>
+                    </div>
+                </form>
+                <!-- End Input Group -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Title Section -->
+<div class="container">
+    <div class="row align-items-center">
+      <div class="col-sm mb-3 mb-sm-0">
+        <h1 class="h2 mb-0">Total de busquedas realizdas: <%= meetis.length %> </h1>
+      </div>
+    </div>
+    <!-- End Row -->
+  </div>
+  <!-- End Title Section -->
+
+  <!-- List of Properties Section -->
+  <div class="container space-1 space-bottom-2 space-bottom-lg-3">
+    <div class="row">
+      <% if(meetis.length > 0) { %>
+        <% meetis.forEach(meeti => { %>
+      <div class="col-sm-6 col-lg-4 mb-5">
+         <!-- //////////////////////////// -->
+      
+        <div class="js-slide mb-5">
+            <div class="card h-100">
+                <% if(meeti.grupo.imagen) { %>
+                <img class="card-img-top" src="/uploads/grupos/<%= meeti.grupo.imagen%>">
+                <% } else { %>
+                <img class="card-img-top" src="/assets/svg/components/abstract-shapes-15.svg">
+                <% }  %>
+
+                <div class="card-body">
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="media align-items-center">
+                                <% if(meeti.usuario.imagen) { %>
+                                <img class="avatar avatar-sm mr-3"
+                                    src="/uploads/perfiles/<%= meeti.usuario.imagen %>" alt="Image Description">
+                                <% } else { %>
+                                <img class="avatar avatar mr-4" src="/assets/img/100x100/img12.jpg"
+                                    alt="Image Description">
+                                <% }  %>
+                                <div class="media-body">
+                                    <h5 class="mb-0">
+                                        <p class="text-body mb-1">Organizado por:</p>
+                                        <a class="text-dark"><%= meeti.usuario.nombre %></a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End Row -->
+
+                    <h3 class="mb-3">
+                        <a class="text-dark" href="/meeti/<%= meeti.slug %>"><%= meeti.titulo %> </a>
+                    </h3>
+                    <% moment.locale('es') %>
+                    <% const fecha = meeti.fecha +' '+ meeti.hora %>
+                    <span class="d-block font-size-1 text-body mb-1"><strong>fecha: </strong><span
+                            class="badge badge-pill badge-warning"><%= moment(fecha).format('LL') %> </span></span>
+                    <span class="d-block font-size-1 text-body mb-1"><strong>Hora: </strong><span
+                            class="badge badge-pill badge-success"><%= moment(fecha).format('h:mm a') %>
+                        </span></span>
+
+                    <!-- <span class="badge badge-soft-info mr-2">
+                          <span class="legend-indicator bg-info"></span>Remote
+                        </span> -->
+
+                </div>
+                <div class="card-footer border-0 pt-0">
+                    <a class="font-weight-bold" href="<%= meeti.slug %>">Leer mas del evento <i
+                            class="fas fa-angle-right fa-sm ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+      <!-- //////////////////////////// -->
+      </div>
+      <% }) %>
+        <% } else { %>
+        <div class="alert alert-soft-primary text-center" role="alert">
+            <h4 class="alert-heading">Aviso! </h4>
+           No se ha encotrado meeti's
+        </div>
+      <% } %>
+
+     
+
+    </div>
+    <!-- End Row -->
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <nav aria-label="Page navigation">
+        <ul class="pagination mb-0">
+          <li class="page-item ml-0">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+          <li class="page-item"><a class="page-link" href="#">9</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <small class="d-none d-sm-inline-block text-body">Page 1 out of 9</small>
+    </div>
+    <!-- End Pagination -->
+  </div>
+  <!-- End List of Properties Section -->
+  
+
+</main>
+<!-- ========== END MAIN ========== -->
+<div id="jsPreloader" class="page-preloader">
+        <div class="page-preloader-content-centered">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+</div>

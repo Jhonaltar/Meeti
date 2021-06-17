@@ -1,0 +1,453 @@
+<main id="content" role="main">
+    <div class="container space-top-1 space-top-lg-2">
+        <!-- Profile Cover -->
+        <div class="profile-cover">
+            <div class="profile-cover-img-wrapper">
+                <img class="profile-cover-img" src="/assets/img/1920x400/img1.jpg" alt="Image Description">
+            </div>
+        </div>
+        <!-- End Profile Cover -->
+        <!-- Media -->
+        <div class="d-sm-flex align-items-lg-center pt-1 px-3 pb-3">
+            <div class="mb-2 mb-sm-0 mr-4">
+                <% if(meeti.usuario.imagen) { %>
+                <img class="avatar avatar-xl profile-cover-avatar shadow-soft"
+                    src="/uploads/perfiles/<%= meeti.usuario.imagen%>" alt="Image Description">
+                <% } else { %>
+                <img class="avatar avatar-xl profile-cover-avatar shadow-soft" src="/assets/img/100x100/img12.jpg"
+                    alt="Image Description">
+                <% } %>
+
+            </div>
+            <div class="media-body">
+                <div class="row">
+                    <div class="col-lg mb-3 mb-lg-0">
+                        <h1 class="h2 mb-1">
+                            <%= meeti.titulo %>
+                        </h1>
+
+                        <!-- Rating List -->
+                        <div class="d-flex align-items-center">
+                            <span class="font-size-1 ml-1">Organizado por:</span>
+                            <span class="font-weight-bold text-dark ml-1">
+                                <%= meeti.usuario.nombre %>
+                            </span>
+                            <a href="/usuario/<%= meeti.usuario.id %> "
+                                class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Ver
+                                Perfil</a>
+                        </div>
+                        <span class="font-size-1 ml-1">Creador del grupo:</span>
+                        <span class="font-weight-bold text-dark ml-1">
+                            <%= meeti.grupo.nombre %>
+                        </span>
+                        <a href="/grupos/<%= meeti.grupo.id %>"
+                            class="btn btn-xs btn-soft-indigo font-weight-bold transition-3d-hover py-1 px-2 ml-1">Ver
+                            Grupo</a>
+                        <!-- End Rating List -->
+                    </div>
+
+                    <div class="col-lg-auto align-self-lg-end text-lg-right">
+                        <!-- <p>¿Asistirás?</p> -->
+                        <% if(usuario.id) { %>
+                        <% const existe=meeti.interesados.includes(usuario.id) %>
+                        <form action="/confirmar-asistencia/<%= meeti.slug %>" id="confirmar-asistencia">
+                            <% if(existe) {%>
+                            <input type="hidden" id="accion" value="confirmar">
+                            <input type="submit" class="btn btn-sm btn-outline-danger mb-1 mb-sm-0"
+                                value="Cancelar Asistencia">
+                            <% } else { %>
+                            <input type="hidden" id="accion" value="confirmar">
+                            <input type="submit" class="btn btn-sm btn-outline-primary mb-1 mb-sm-0"
+                                value=" + Asistir al evento">
+                            <% } %>
+                        </form>
+                        <% }else{ %>
+                        <div class="alert alert-soft-dark" role="alert">
+                            Inicia sesion para confirmar tu asistencia.
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                <!-- End Row -->
+            </div>
+        </div>
+        <!-- End Media -->
+    </div>
+
+    <!-- Description Section -->
+    <div class="container space-2">
+        <div class="row">
+            <div class="col-lg-7" data-aos="fade-up">
+                <% if(meeti.grupo.imagen) { %>
+                <img class="img-fluid rounded-lg" src="/uploads/grupos/<%= meeti.grupo.imagen%>">
+                <% } else { %>
+                <img class="card-img-top" src="/assets/img/900x450/img1.jpg">
+                <% } %>
+
+                <div class="mb-8">
+                    <div class="mb-3">
+                        <br>
+                        <h3>Descripcion del evento</h3>
+                    </div>
+
+                    <p>
+                        <%- meeti.descripcion %>
+                    </p>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <h3><span class="badge badge-pill badge-dark">Total de personas que
+                                        asistiran: <span class="badge badge-pill badge-light">
+                                            <%= meeti.interesados.length %>
+                                        </span></span></h3>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6" style="padding-left: 100px">
+                            <div class="mb-4">
+                                <a class="btn btn-sm btn-soft-primary mb-1 mb-sm-0" href="/asistentes/<%= meeti.slug %>"
+                                    data-toggle="modal" data-target="#verlista_asistente<%= meeti.slug %>">
+                                    <i class="fas fa-plus fa-sm mr-1"></i> Ver asistencias
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div id="verlista_asistente<%= meeti.slug %>" class="modal fade" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenteredScrollableTitle">
+                                            Listado de
+                                            asistencia en el evento
+                                        </h5>
+                                        <button type="button" class="btn btn-xs btn-icon btn-soft-secondary"
+                                            data-dismiss="modal" aria-label="Close">
+                                            <svg aria-hidden="true" width="10" height="10" viewBox="0 0 18 18"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill="currentColor"
+                                                    d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <% if (asistentes.length) { %>
+                                        <div class="table-responsive">
+                                            <table
+                                                class="table table-borderless table-thead-bordered table-nowrap table-align-middle"
+                                                style="text-align: center;">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>Nombres de usuarios</th>
+                                                        <th style="width: 5%;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% asistentes.forEach(asistente=> {%>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="media align-items-center" align="center">
+                                                                <% if (asistente.imagen) { %>
+                                                                <img class="avatar avatar-sm avatar-circle mr-3"
+                                                                    src="/uploads/perfiles/<%= asistente.imagen %> "
+                                                                    alt="Image Description">
+                                                                <%} else { %>
+                                                                <img class="avatar avatar-sm avatar-circle mr-3"
+                                                                    src="/assets/img/100x100/img12.jpg"
+                                                                    alt="Image Description">
+                                                                <% } %>
+                                                                <div class="media-body">
+                                                                    <a class="d-inline-block text-dark"
+                                                                        href="/usuario/<%= asistente.id %>">
+                                                                        <h6 class="text-hover-primary mb-0">
+                                                                            <%= asistente.nombre
+                                                                                                                %>
+                                                                            <img class="avatar avatar-xss ml-1"
+                                                                                src="../assets/svg/illustrations/top-vendor.svg"
+                                                                                alt="Image Description"
+                                                                                data-toggle="tooltip"
+                                                                                data-placement="top" title="Ver Perfil">
+                                                                        </h6>
+                                                                    </a>
+                                                                    <small class="d-block">
+                                                                        <%= asistente.email
+                                                                                                            %>
+                                                                    </small>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <%}) %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- End Table -->
+                                        <% }else { %>
+                                        <div class="alert alert-soft-info text-center" role="alert">
+                                            Aun no hay usuarios que asistiran
+                                        </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fin modal -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div id="stickyBlockStartPoint" class="pl-lg-4">
+                    <!-- Card -->
+                    <div class="js-sticky-blocks card card-bordered" data-hs-sticky-block-options="{
+                         &quot;parentSelector&quot;: &quot;#stickyBlockStartPoint&quot;,
+                         &quot;breakpoint&quot;: &quot;lg&quot;,
+                         &quot;startPoint&quot;: &quot;#stickyBlockStartPoint&quot;,
+                         &quot;endPoint&quot;: &quot;#stickyBlockEndPoint&quot;,
+                         &quot;stickyOffsetTop&quot;: 20,
+                         &quot;stickyOffsetBottom&quot;: 20
+                       }">
+                        <div class="card-body p-5">
+                            <div class="mb-5">
+                                <ul class="step step-dashed mb-7">
+                                    <li class="step-item">
+                                        <div class="step-content-wrapper">
+                                            <span class="step-icon step-icon-xs step-icon-soft-primary"><i
+                                                    class="fas fa-clock"></i></span>
+                                            <div class="step-content">
+                                                <% moment.locale('es') %>
+                                                <% const fecha=meeti.fecha +' '+ meeti.hora %>
+                                                <h3 class="h4">Fecha y hora del evento</h3>
+                                                <p><%= moment(fecha).format(' LL') %> a las <%=
+                                                            moment(fecha).format('h:mm a') %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="step-item mb-0">
+                                        <div class="step-content-wrapper">
+                                            <span class="step-icon step-icon-xs step-icon-soft-primary"><i
+                                                    class="fas fa-map-marked-alt"></i></span>
+                                            <div class="step-content">
+                                                <h4>Direccion del evento</h4>
+                                                <p class="mb-0">En la calle <%= meeti.direccion %> en la ciudad de
+                                                    <%= meeti.ciudad %>
+                                                </p>
+                                                <p class="mb-0"><strong>Pais:</strong>
+                                                    <%= meeti.pais %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="alert alert-soft-primary" role="alert" style="text-align: center;">
+                                Mapa de ubicacion del Meeti
+                            </div>
+                            <input type="hidden" id="lat" value="<%= meeti.ubicacion.coordinates[0] %> ">
+                            <input type="hidden" id="lng" value="<%= meeti.ubicacion.coordinates[1] %> ">
+                            <input type="hidden" id="direccion" value="<%= meeti.direccion %> ">
+                            <div id="ubicacion-meeti" class="min-h-450rem rounded"></div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                </div>
+            </div>
+            <!-- Commentarios -->
+            <div class="col-lg-8 mb-7 mb-lg-0">
+                <br>
+                <div class="mb-4">
+                    <h2 style="text-align: center;">Comentarios</h2>
+                </div>
+                <!-- End Row -->
+                <!-- Testimonials -->
+                <ul class="list-unstyled list-lg-article">
+                    <% if (comentarios.length> 0) { %>
+                    <% comentarios.forEach(comentario=> { %>
+                    <li class="comentario">
+                        <!-- Media -->
+                        <div class="media">
+                            <div class="avatar avatar-circle mr-3">
+                                <% if (comentario.usuario.imagen) {%>
+                                <img class="avatar-img" src="/uploads/perfiles/<%= comentario.usuario.imagen %> "
+                                    alt="Image Description">
+                                <% } else {%>
+                                <img class="avatar-img" src="/assets/img/100x100/img12.jpg" alt="Image Description">
+                                <% } %>
+                            </div>
+                            <div class="media-body">
+                                <h5 class="mb-0"><a href="/usuario/<%= comentario.usuario.id %> ">
+                                        <%= comentario.usuario.nombre %>
+                                    </a><img class="mr-2" src="../assets/svg/illustrations/star.svg" alt="Review rating"
+                                        width="14">
+                                </h5>
+
+                                <div class="d-flex align-items-center mb-3">
+                                    <small><span class="font-weight-bold text-dark mr-1">Fecha:</span></small>
+                                    <% moment.locale('es') %>
+                                    <% const fecha=comentario.createdAt %>
+                                    <small class="d-block">
+                                        <%=moment(fecha).format(' LL') %> a las
+                                        <%=moment(fecha).format('h:mm a') %>
+                                    </small>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <small><span class="font-weight-bold text-dark mr-1">Email:</span></small><small
+                                        class="d-block">
+                                        <%= comentario.usuario.email %>
+                                    </small>
+                                </div>
+                                <blockquote class="blockquote mb-4">
+                                    <%= comentario.mensaje %>
+                                </blockquote>
+                                <% if (comentario.usuarioId===usuario.id || meeti.usuarioId===usuario.id ) { %>
+                                <form action="/eliminar-comentario" method="post" class="eliminar-comentario">
+                                    <input type="hidden" name="idComentario" value="<%= comentario.id %>">
+                                    <input type="submit" class="btn btn-soft-danger btn-xs" value="Eliminar Comentario">
+                                </form>
+
+                                <% } %>
+
+                            </div>
+                        </div>
+                        <!-- End Media -->
+                    </li>
+                    <% }); %>
+                    <% } else { %>
+                    <div class="alert alert-soft-warning text-center" role="alert">
+                        No hay comentarios aun
+                    </div>
+                    <% } %>
+                </ul>
+                <!-- End Testimonials -->
+                <% if (usuario.id) {%>
+                <a class="btn btn-sm btn-soft-secondary" data-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Agregar algun comentario <i class="fas fa-comments"></i>
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <br>
+                    <form class="input-group input-group-sm input-group-merge" action="/meeti/<%= meeti.id %>"
+                        method="POST">
+                        <textarea class="form-control" rows="4" name="comentario"
+                            placeholder="Comentar algo del evento..." required=""></textarea>
+                        <div class="col-lg-auto align-self-lg-end text-lg-right" style="padding-left:0px;">
+                            <input class="btn btn-sm btn-success" type="submit" value="Comentar">
+                        </div>
+                    </form>
+                </div>
+                <% }else{ %>
+                <div class="alert alert-soft-info text-center" role="alert">
+                    Inicia sesion para agredar un comentario.
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <!--  End Description Section -->
+
+    <div class="container space-2">
+        <!-- Title -->
+        <div class="w-md-80 w-lg-50 mb-4">
+            <h3>Otros meeti's mas cercanos</h3>
+        </div>
+        <!-- End Title -->
+
+        <!-- Slick Carousel -->
+        <div class="js-slick-carousel slick slick-gutters-3 slick-equal-height" data-hs-slick-carousel-options='{
+        "prevArrow": "<span class=\"fas fa-arrow-left slick-arrow slick-arrow-left slick-arrow-centered-y shadow-soft rounded-circle ml-sm-2 ml-md-n2\"></span>",
+        "nextArrow": "<span class=\"fas fa-arrow-right slick-arrow slick-arrow-right slick-arrow-centered-y shadow-soft rounded-circle mr-sm-2 mr-md-n2\"></span>",
+        "slidesToShow": 3,
+        "responsive": [{
+          "breakpoint": 992,
+            "settings": {
+              "slidesToShow": 2
+            }
+          }, {
+          "breakpoint": 768,
+          "settings": {
+            "slidesToShow": 1
+          }
+        }]
+      }'>
+            <% if(cercanos.length > 0) { %>
+            <% cercanos.forEach(meeti => { %>
+            <div class="js-slide mb-5">
+                <div class="card h-100">
+                    <% if(meeti.grupo.imagen) { %>
+                    <img class="card-img-top" src="/uploads/grupos/<%= meeti.grupo.imagen%>">
+                    <% } else { %>
+                    <img class="card-img-top" src="/assets/svg/components/abstract-shapes-15.svg">
+                    <% }  %>
+
+                    <div class="card-body">
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="media align-items-center">
+                                    <% if(meeti.usuario.imagen) { %>
+                                    <img class="avatar avatar-sm mr-3"
+                                        src="/uploads/perfiles/<%= meeti.usuario.imagen %>" alt="Image Description">
+                                    <% } else { %>
+                                    <img class="avatar avatar mr-4" src="/assets/img/100x100/img12.jpg"
+                                        alt="Image Description">
+                                    <% }  %>
+                                    <div class="media-body">
+                                        <h5 class="mb-0">
+                                            <p class="text-body mb-1">Organizado por:</p>
+                                            <a class="text-dark"><%= meeti.usuario.nombre %></a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End Row -->
+
+                        <h3 class="mb-3">
+                            <a class="text-dark" href="/meeti/<%= meeti.slug %>"><%= meeti.titulo %> </a>
+                        </h3>
+                        <% moment.locale('es') %>
+                        <% const fecha = meeti.fecha +' '+ meeti.hora %>
+                        <span class="d-block font-size-1 text-body mb-1"><strong>fecha: </strong><span
+                                class="badge badge-pill badge-warning"><%= moment(fecha).format('LL') %> </span></span>
+                        <span class="d-block font-size-1 text-body mb-1"><strong>Hora: </strong><span
+                                class="badge badge-pill badge-success"><%= moment(fecha).format('h:mm a') %>
+                            </span></span>
+
+                        <!-- <span class="badge badge-soft-info mr-2">
+                              <span class="legend-indicator bg-info"></span>Remote
+                            </span> -->
+
+                    </div>
+                    <div class="card-footer border-0 pt-0">
+                        <a class="font-weight-bold" href="<%= meeti.slug %>">Leer mas del evento <i
+                                class="fas fa-angle-right fa-sm ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <% } else { %>
+            <div class="alert alert-soft-primary text-center" role="alert">
+                <h4 class="alert-heading">Aviso! </h4>
+                No hay meeti's cercanos.
+            </div>
+            <% } %>
+
+
+
+        </div>
+        <!-- End Slick Carousel -->
+    </div>
+
+</main>
+
+<div id="jsPreloader" class="page-preloader">
+    <div class="page-preloader-content-centered">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
